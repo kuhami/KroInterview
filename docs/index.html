@@ -185,35 +185,35 @@
                     </div>
                 </div>
             </div>
-            <div class="slide slide--examples slide--shown">
-                <div class="slide__inner">
-                    <div class="slide__header">
-                        <h2 class="slide__title">应用案例</h2>
-                        <p class="slide__description">
-                            <span v-for="item in textCases" style="display: none" v-show="textCases.length">
-                                <a class="cases" :href="item.link ? item.link : 'javascript:;'" :class="{'islink': item.link}">{{item.name}}</a>
-                                <a class="opensource cases islink" :href="item.opensource ? item.opensource : 'javascript:;'" v-show="item.opensource">（开源）</a>、
-                            </span>
-                            ...
-                        </p>
-                        <div class="examples__pr">
-                            <a class="button button--pr" href="https://github.com/Tencent/wepy/tree/master/docs/data" target="_blank"> 
-                                <strong style="font-size: 20px;">+</strong> 案例</a>
-                        </div> 
-                    </div>
+            <!--<div class="slide slide&#45;&#45;examples slide&#45;&#45;shown">-->
+                <!--<div class="slide__inner">-->
+                    <!--<div class="slide__header">-->
+                        <!--<h2 class="slide__title">应用案例</h2>-->
+                        <!--<p class="slide__description">-->
+                            <!--<span v-for="item in textCases" style="display: none" v-show="textCases.length">-->
+                                <!--<a class="cases" :href="item.link ? item.link : 'javascript:;'" :class="{'islink': item.link}">{{item.name}}</a>-->
+                                <!--<a class="opensource cases islink" :href="item.opensource ? item.opensource : 'javascript:;'" v-show="item.opensource">（开源）</a>、-->
+                            <!--</span>-->
+                            <!--...-->
+                        <!--</p>-->
+                        <!--<div class="examples__pr">-->
+                            <!--<a class="button button&#45;&#45;pr" href="https://github.com/Tencent/wepy/tree/master/docs/data" target="_blank"> -->
+                                <!--<strong style="font-size: 20px;">+</strong> 案例</a>-->
+                        <!--</div> -->
+                    <!--</div>-->
 
-                    <!-- 应用案例 -->
-                    <div class="examples carousel">
-                        <a href="" target="_blank" class="example carousel-cell" v-for="item in rollCases" style="display: none" v-show="rollCases.length">
-                            <div class="example__inner">
-                                <h3 class="example__title" v-text="item.name"></h3>
-                                <div class="example__image" :style="{ backgroundImage: 'url(\'' + item.qrcode + '\')'}" ></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="slide__footer"></div>
-                </div>
-            </div>
+                    <!--&lt;!&ndash; 应用案例 &ndash;&gt;-->
+                    <!--<div class="examples carousel">-->
+                        <!--<a href="" target="_blank" class="example carousel-cell" v-for="item in rollCases" style="display: none" v-show="rollCases.length">-->
+                            <!--<div class="example__inner">-->
+                                <!--<h3 class="example__title" v-text="item.name"></h3>-->
+                                <!--<div class="example__image" :style="{ backgroundImage: 'url(\'' + item.qrcode + '\')'}" ></div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="slide__footer"></div>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
     <div class="modal-container" :class="isQrShow ? 'active' : ''" @click="modalClick"> 
