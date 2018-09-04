@@ -35,11 +35,16 @@ window.$docsify = {
     basePath: '../md/',
     homepage: 'doc.md',
     search: {
-        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+        noData: {
+            '/': '没有结果!',
+            '/': 'No results!'
+        },
         paths: 'auto',
-        placeholder: '搜索',
-        noData: '没有记录！'
-    }
+        placeholder: {
+            '/': '搜索',
+            '/': 'Search'
+        },
+    },
 }
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
