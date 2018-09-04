@@ -23,14 +23,52 @@
 
 </body>
 <script>
-    window.$docsify = {
-      el: '#app',
-      auto2top: true,
-      basePath: '../md/',
-      homepage: 'doc.md'
-    }
+//    window.$docsify = {
+//      el: '#app',
+//      auto2top: true,
+//      basePath: '../md/',
+//      homepage: 'doc.md'
+//    }
+window.$docsify = {
+    el: '#app',
+    auto2top: true,
+    basePath: '../md/',
+    homepage: 'doc.md',
+    coverpage: true,
+    loadSidebar: true,
+    loadNavbar: true,
+    subMaxLevel: 2,
+    search: {
+        noData: {
+            '/': '没有结果!',
+            '/': 'No results!'
+        },
+        paths: 'auto',
+        placeholder: {
+            '/': '搜索',
+            '/': 'Search'
+        },
+    },
+    plugins: [
+        function(hook) {
+            var footer = [
+                '<hr/>',
+                '<footer>',
+                '<span><a href="https://github.com/skyvow">Made with by skyvow</a></span>',
+                '</footer>'
+            ].join('')
+            hook.afterEach(function(html) {
+                return html + footer
+            })
+        },
+    ],
+    name: 'Wux Weapp',
+    repo: 'https://github.com/wux-weapp/wux-weapp/',
+}
 </script>
-<script src="//unpkg.com/docsify/lib/docsify.js"></script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+<script src="//unpkg.com/docsify-copy-code"></script>
 <script>
 var _hmt = _hmt || [];
 (function() {
