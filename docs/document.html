@@ -39,31 +39,11 @@ window.$docsify = {
     loadNavbar: true,
     subMaxLevel: 2,
     search: {
-        noData: {
-            '/': '没有结果!',
-            '/': 'No results!'
-        },
+        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
         paths: 'auto',
-        placeholder: {
-            '/': '搜索',
-            '/': 'Search'
-        },
-    },
-    plugins: [
-        function(hook) {
-            var footer = [
-                '<hr/>',
-                '<footer>',
-                '<span><a href="https://github.com/skyvow">Made with by skyvow</a></span>',
-                '</footer>'
-            ].join('')
-            hook.afterEach(function(html) {
-                return html + footer
-            })
-        },
-    ],
-    name: 'Wux Weapp',
-    repo: 'https://github.com/wux-weapp/wux-weapp/',
+        placeholder: '搜索',
+        noData: '没有记录！'
+    }
 }
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
