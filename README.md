@@ -1,7 +1,7 @@
 ## WePY
 
 [![npm version](https://badge.fury.io/js/KroInterview.svg)](https://badge.fury.io/js/KroInterview)
-[![travis-ci](https://travis-ci.org/Tencent/wepy.svg?branch=1.7.x)](https://travis-ci.org/Tencent/wepy)
+[![travis-ci](https://travis-ci.org/kuhami/KroInterview.svg?branch=1.7.x)](https://travis-ci.org/kuhami/KroInterview)
 [![Coverage Status](https://coveralls.io/repos/github/Tencent/wepy/badge.svg?branch=1.7.x)](https://coveralls.io/github/Tencent/wepy?branch=1.7.x)
 [![Dependency Status](https://david-dm.org/Tencent/wepy.svg)](https://david-dm.org/Tencent/wepy)
 
