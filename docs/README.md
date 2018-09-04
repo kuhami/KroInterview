@@ -1,4 +1,4 @@
-# 微信小程序组件化开发框架WePY官方文档
+# 前端面试爱好者文档（挑战更高薪资）
 
-文档地址：[https://tencent.github.io/wepy/](https://tencent.github.io/wepy/)  
+文档地址：[https://github.com/kuhami/KroInterview/](https://github.com/kuhami/KroInterview/)  
 
