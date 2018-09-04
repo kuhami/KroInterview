@@ -1,0 +1,9 @@
+/lib
+scripts
+packages/*/node_modules
+packages/*/lib
+packages/*/dist
+packages/*/test/fixtures
+packages/*/coverage
+packages/wepy-cli/templates
+gulpfile.js
