@@ -38,15 +38,12 @@
 //    }
     window.$docsify = {
     el: '#app',
-    //auto2top: true,
+    auto2top: true,
     basePath: '../md/',
-        homepage: 'README.md',
-    loadSidebar: true,
+    homepage: 'README.md',
+    repo: 'https://github.com/kuhami/KroInterview',
     subMaxLevel:3,//左边栏显示层级
-//    alias: {
-//       '/.*/_sidebar.md': '/_sidebar.md'
-//    },
-        formatUpdated: '{MM}/{DD} {HH}:{mm}',
+     loadSidebar: '_sidebar.md',
     search: {
         noData: {
             '/': '没有结果!',
@@ -88,6 +85,7 @@
         }, 1);
     }
 </script>
+
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 <!--需要一键复制代码到本地运行-->
