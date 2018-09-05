@@ -1,3 +1,3 @@
 * 前端
-     * [JS](front/front)
+     * [JS](front)
      * [WePy](doc)
