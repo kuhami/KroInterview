@@ -25,7 +25,7 @@
     </header>
     <div id="app">Please wait...</div>
         <!--一键回到顶部-->
-    <div id="topbtn" style="width: 20px;height:20px;background: #0BB20C;border-radius:10px;position: fixed;z-index: 999;bottom: 10px;right: 10px;"></div>
+    <div id="topbtn" style="width: 20px;height:20px;background: #0BB20C;border-radius:10px;position: fixed;z-index: 999;bottom: 10px;right: 10px;cursor: pointer;"></div>
 </body>
 <script>
 //    window.$docsify = {
@@ -56,9 +56,19 @@
     },
 }
 
-    var topbtn = document.getElementById('#topbtn');
+    var topbtn = document.getElementById('topbtn');
     var lastScroll = 0;
-    console.log(topbtn)
+    topbtn.style.display = 'none';
+    window.onscroll = function(){
+        var top = document.documentElement.scrollTop;//初始均为0
+
+        if(top > 0){
+            topbtn.style.display = 'block';
+        }
+        if(top == 0){ //若为起始状态，则不显示向上图标
+            topbtn.style.display = 'none';
+        }
+    };
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
