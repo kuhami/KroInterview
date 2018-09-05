@@ -25,7 +25,8 @@
     </header>
     <div id="app">Please wait...</div>
         <!--一键回到顶部-->
-    <div id="topbtn" style="width: 20px;height:20px;background: #0BB20C;border-radius:10px;position: fixed;z-index: 999;bottom: 10px;right: 10px;cursor: pointer;"></div>
+    <div id="topbtn" style="position: fixed;z-index: 999;bottom:20px;right:20px;cursor: pointer;">
+        <img src="img/topbtn.png" alt=""></div>
 </body>
 <script>
 //    window.$docsify = {
@@ -61,7 +62,6 @@
     topbtn.style.display = 'none';
     window.onscroll = function(){
         var top = document.documentElement.scrollTop;//初始均为0
-
         if(top > 0){
             topbtn.style.display = 'block';
         }
@@ -69,6 +69,21 @@
             topbtn.style.display = 'none';
         }
     };
+    topbtn.onclick = function () {
+        var scrollTop = 0;
+        var curPos = document.documentElement.scrollTop;//现在滚动条的位置
+        var step = Math.abs(scrollTop - curPos) / 200 ;
+        var tid = setInterval(function() { //不断调用，帧动成画
+            if (curPos > scrollTop + 14) {
+                curPos -= step;
+                step = step * 1.05; //速度逐步加快
+                document.documentElement.scrollTop = curPos
+            } else if (curPos <= scrollTop + 14){ //直接跳到起始位置
+                document.documentElement.scrollTop = scrollTop
+                clearInterval(tid); //关闭循环
+            }
+        }, 1);
+    }
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
