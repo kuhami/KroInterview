@@ -17,13 +17,15 @@
         <div class="container">
             <nav class="a123">
                 <a href="./index.html">首页</a>
-                <a href="#api">API文档</a>
-                <a href="#changelog">CHANGELOG</a>
+                <!--<a href="#api">API文档</a>-->
+                <!--<a href="#changelog">CHANGELOG</a>-->
+                <a href="#">前端</a>
             </nav>
         </div>
     </header>
     <div id="app">Please wait...</div>
-
+        <!--一键回到顶部-->
+    <div id="topbtn" style="width: 20px;height:20px;background: #0BB20C;border-radius:10px;position: fixed;z-index: 999;bottom: 10px;right: 10px;"></div>
 </body>
 <script>
 //    window.$docsify = {
@@ -32,7 +34,7 @@
 //      basePath: '../md/',
 //      homepage: 'doc.md'
 //    }
-window.$docsify = {
+    window.$docsify = {
     el: '#app',
     auto2top: true,
     basePath: '../md/',
@@ -53,6 +55,10 @@ window.$docsify = {
         },
     },
 }
+
+    var topbtn = document.getElementById('#topbtn');
+    var lastScroll = 0;
+    console.log(topbtn)
 </script>
 <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
