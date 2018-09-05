@@ -20,6 +20,7 @@
                 <!--<a href="#api">API文档</a>-->
                 <!--<a href="#changelog">CHANGELOG</a>-->
                 <a href="#">前端</a>
+                <a href="#">关于我们</a>
             </nav>
         </div>
     </header>
@@ -37,13 +38,14 @@
 //    }
     window.$docsify = {
     el: '#app',
-    auto2top: true,
+    //auto2top: true,
     basePath: '../md/',
-    homepage: 'doc.md',
-    //coverpage: true,
-    //loadSidebar: true,
-    //loadNavbar: true,
-    //subMaxLevel: 2,
+        homepage: 'README.md',
+    loadSidebar: true,
+    subMaxLevel:3,//左边栏显示层级
+    alias: {
+       '/.*/_sidebar.md': '/_sidebar.md'
+    },
     search: {
         noData: {
             '/': '没有结果!',
@@ -96,7 +98,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?14c98a4c2ac48bfa7a4c6e9bf797d125";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
