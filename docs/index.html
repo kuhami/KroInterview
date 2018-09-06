@@ -220,9 +220,10 @@
     <div class="modal-container" :class="isQrShow ? 'active' : ''" @click="modalClick"> 
             <div class="qr-modal">
                 <div style="padding: 10px;">
-                    我们是完全开源的，任何人都可以免费投稿。KroInterview 交流群，请加扫码进群，验证回复 `kro` 按照指引进群。
+                    <!--我们是完全开源的，任何人都可以免费投稿。KroInterview 交流群，请加扫码进群，验证回复 `kro` 按照指引进群。-->
+                    我们是完全开源的，任何人都可以免费投稿。KroInterview 交流群，请加扫码加我好友进群，验证回复 `kro` 按照指引进群。
                 </div> 
-                <img style="width: 200px;" src="img/qrcode.png">
+                <img style="width: 200px;" src="img/qrcode.jpeg">
             </div>
     </div>
 </div>
@@ -280,7 +281,7 @@
         style: '',
         code: `
 import wepy from 'wepy';
-        
+
 export default class Index extends wepy.page {
     getData() {
       return new Promise((resolve, reject) => {
