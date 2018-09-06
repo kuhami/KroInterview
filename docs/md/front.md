@@ -77,3 +77,78 @@ typeof b // 'object' //显然用`typeof` 来区分它们是不行的
 typeof null === 'object'; // 从一开始出现JavaScript就是这样的
 ````
 PS：为什么会出现这种情况呢？在 JavaScript 最初的实现中，JavaScript 中的值是由一个表示类型的标签和实际数据值表示的。对象的类型标签是 0。由于 `null` 代表的是空指针（大多数平台下值为 0x00），因此，`null`的类型标签也成为了 0，`typeof null`就错误的返回了"object"。
+
+## 遍历
+
+说到遍历，首先想到的是数组的遍历，方法不要太多，比如 `for`， `forEach`，`map`，`filter`，`every`，`some`等；`But` 你知道它们的作用吗？
+
+下面来看下用法，首先 定义一个数组：
+
+```js
+ var arr = ['1', 'two', 2, true, '二'];
+```
+
+知识点：
+1. `for`循环，需要知道数组的长度，才能遍历;
+2. `forEach`循环，循环数组中每一个元素并采取操作， 没有返回值， 可以不用知道数组长度；
+
+```js
+ arr.forEach(function (i, index) { 
+     console.log(i, index);
+  });
+  //返回值： 1,0; two,2; 2,2; true,3; 二,4;
+```
+ 3 . `map`函数，遍历数组每个元素，并回调操作，需要返回值，返回值组成新的数组，原数组不变；
+
+```js
+ var newMaparr = arr.map(function (i, index) { 
+     return i +',hi';
+  });
+console.log(arr,newarr);
+  //返回值： ['1', 'two', 2, true, '二'],['1,hi', 'two,hi', '2,hi', 'true,hi', '二,hi'];
+```
+4 . `filter`函数， 过滤通过条件的元素组成一个新数组， 原数组不变；
+```js
+ var newFilterarr = arr.filter(function (i, index) { 
+     return typeof i == "number";
+  });
+console.log(arr,newFilterarr);
+  //返回值： ['1', 'two', 2, true, '二'],[2];
+```
+5 . `some`函数，遍历数组中是否有符合条件的元素，返回Boolean值
+
+```js
+ var newSomearr = arr.some(function (i, index) { 
+     return typeof i == "number";
+  });
+console.log(arr,newSomearr);
+  //返回值： ['1', 'two', 2, true, '二'],true;
+```
+6 . `every`函数， 遍历数组中是否每个元素都符合条件， 返回Boolean值
+
+```js
+ var newEveryarr = arr.every(function (i, index) { 
+     return typeof i == "number";
+  });
+console.log(arr,newEveryarr);
+  //返回值： ['1', 'two', 2, true, '二'],false;
+```
+
+当然， 除了遍历数组之外，还有遍历对象，常用方法 `for ··· in`
+
+```js
+ var obj = {a:'test', b:2, c:true}
+ for(var i in obj){
+    console.log(i,obj[i]);
+ }
+//返回值： 0,test; 1,2; 2,true;
+```
+`for ··· in` 不仅可以用来 遍历对象，还可以用来遍历数组， 不过 `i` 对应与数组的`key`值
+
+```js
+  var arr = ['1', 'two', 2, true, '二'];
+ for(var i in arr){
+    console.log(i,arr[i]);
+ }
+//返回值： 0,1; 1,two; 2,2; 3,true; 4,二;
+```
