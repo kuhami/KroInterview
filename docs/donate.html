@@ -6,14 +6,15 @@
 
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>WePY | 小程序组件化开发框架</title>
-    <meta name=keywords content="WePY, 小程序, 组件化, ES6, ES7, Promise">
-    <meta name="description" content="小程序组件化开发框架">
+    <title>KroInterview | 让前端面试更简单</title>
+    <meta name=keywords content="KroInterview, 前端面试,React, 组件化, ES6, ES7, Promise">
+    <meta name="description" content="让前端面试更简单">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- favicon.ico in the root directory -->
     <link rel="stylesheet" href="./css/donate.css">
-    <meta property="og:title" content="WePy 小程序组件化开发框架">
+    <meta property="og:title" content="KroInterview 让前端面试更简单">
+    <link rel="icon" href="favicon.ico">
 </head>
 
 <body class="shown">
@@ -26,17 +27,19 @@
                             <a class="logo" href="/">
                                 <span class="logo__icon"></span>
                                 <div class="logo_text">
-                                    <span class="logo__title">WePY</span>
+                                    <span class="logo__title">KroInterview</span>
                                     <span class="logo__description">
-                                        <span> </span>帮你快速开发小程序</span>
+                                        <span> </span>让前端面试更简单</span>
                                 </div>
                             </a>
 
                             <div class="nav">
                                 <a class="nav__item nav__item--home" href="./index.html">首页</a>
-                                <a class="nav__item nav__item--document" target="_blank" href="./document.html">使用手册</a>
-                                <a class="nav__item nav__item--api" target="_blank" href="./document.html#/api">API 说明</a>
-                                <a class="nav__item nav__item--logs" target="_blank" href="./document.html#/changelog">版本日志</a>
+                                <a href="./document.html">前端</a>
+                                <a href="./document.html">关于我们</a>
+                                <!--<a class="nav__item nav__item&#45;&#45;document" target="_blank" href="./document.html">使用手册</a>-->
+                                <!--<a class="nav__item nav__item&#45;&#45;api" target="_blank" href="./document.html#/api">API 说明</a>-->
+                                <!--<a class="nav__item nav__item&#45;&#45;logs" target="_blank" href="./document.html#/changelog">版本日志</a>-->
                                 <a class="nav__item nav__item--donate" href="./donate.html">Donate</a>
                             </div>
 
@@ -46,26 +49,26 @@
                                         <a href="#" @mouseenter="wxEnter"></a>
                                     </li>
                                     <li class="social-link social-link--gh">
-                                        <a href="https://github.com/wepyjs/wepy" target="_blank"></a>
+                                        <a href="https://github.com/kuhami/KroInterview" target="_blank"></a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="tagline">
-                        <h2 class="tagline__title">欢迎捐赠 WePY</h2>
+                        <h2 class="tagline__title">欢迎捐赠 KroInterview</h2>
                     </div>
 
                     <div class="actions">
 
                         <div class="action">
                             <img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/donate/wechat.jpeg" />
-                            <h2>微信捐赠WePY</h2>
+                            <h2>微信捐赠KroInterview</h2>
                         </div>
 
                         <div class="action">
                             <img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/donate/alipay.jpeg" />
-                            <h2>支付宝捐赠WePY</h2>
+                            <h2>支付宝捐赠KroInterview</h2>
 
                         </div>
 
@@ -120,7 +123,7 @@
                              如您希望显示可点击现方按钮, 进入 PR 页面完善信息，并发布 pull request，网站会不定期更新。
                            </p>
                         </div>
-                        <a href="https://github.com/wepyjs/wepy/edit/master/docs/data/donate.json" class="button button--pr">+ 添加捐赠信息</a>
+                        <a href="https://github.com/kuhami/KroInterview/blob/master/docs/data/donate.json" class="button button--pr">+ 添加捐赠信息</a>
                       </div>
                     </div>
                   </div>
@@ -129,16 +132,17 @@
         <div class="modal-container" :class="isQrShow ? 'active' : ''" @click="modalClick">
             <div class="qr-modal">
                 <div style="padding: 10px;">
-                    我们是完全开源的，任何人都可以免费投稿。WePY 交流群已满500人，请加 gcaufy_helper 好友或者扫码加好友，验证回复 wepy 按照指引进群。
+                    <!--我们是完全开源的，任何人都可以免费投稿。KroInterview 交流群，请加扫码进群，验证回复 `kro` 按照指引进群。-->
+                    我们是完全开源的，任何人都可以免费投稿。KroInterview 交流群，请加扫码加我好友进群，验证回复 `kro` 按照指引进群。
                 </div>
-                <img style="width: 200px;" src="img/qrcode.png">
+                <img style="width: 200px;" src="img/qrcode.jpeg">
             </div>
         </div>
     </div>
     <div class="footer">
         <div class="footer-inner">
             <div class="footer--copyright">
-                Copyright © 2017 THL A29 Limited a Tencent company All rights reserved
+                MIT Licensed | Copyright © 2018-present kuhami | Disclaimer: all copyright belongs to Tencent, please let us know if there is any infringement.
             </div>
         </div>
     </div>

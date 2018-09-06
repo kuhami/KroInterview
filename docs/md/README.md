@@ -28,8 +28,8 @@
 
 ## 捐赠
 
-如果你觉得 KroInterview 对你有帮助，或者想对我微小的工作一点资瓷，欢迎给我[捐赠](https://github.com/QingWei-Li/donate)。
-
-## Community
-
-Users and development team are in the [Gitter](https://gitter.im/docsifyjs/Lobby).
+如果你觉得 KroInterview 对你有帮助，或者想对我微小的工作一点资瓷，欢迎给我[捐赠](https://kuhami.github.io/KroInterview/donate.html)。
+或者给动动小手给一颗[start](https://github.com/kuhami/KroInterview)，是对在下勇往直前的动力💪。
+<p style="display:none">
+## CommunityUsers and development team are in the [Gitter](https://gitter.im/docsifyjs/Lobby.
+</p>
