@@ -54,7 +54,7 @@ typeof b // b 没有声明，但是还会显示 undefined
 typeof console.log // 'function'
 typeof NaN // 'number'，NaN是"Not-A-Number"的缩写
 ```
-`typeof` 对于数组、对象，都会显示 `object`，显然用`typeof` 来区分它们是不行的，那么怎么区分呢？
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/lamp.jpg"><front style="color:red">经典面试题：</front>`typeof` 对于数组、对象，都会显示 `object`，显然用`typeof` 来区分它们是不行的，那么怎么区分呢？
 ``` js
 var a = [],b={}
 typeof a // 'object'
@@ -88,7 +88,7 @@ PS：为什么会出现这种情况呢？在 JavaScript 最初的实现中，Jav
  var arr = ['1', 'two', 2, true, '二'];
 ```
 
-知识点：
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/lamp.jpg">知识点：
 1. `for`循环，需要知道数组的长度，才能遍历;
 2. `forEach`循环，循环数组中每一个元素并采取操作， 没有返回值， 可以不用知道数组长度；
 
@@ -154,5 +154,103 @@ console.log(arr,newEveryarr);
 ```
 
 ## 闭包
+闭包是 `js` 中的一大特色，也是一大难点。简单来说，所谓闭包就是说，一个函数能够访问其函数外部作用域中的变量。
 
-### 变量的作用域
+闭包的三大特点为：
+1. 函数嵌套函数
+2. 内部函数可以访问外部函数的变量
+3. 参数和变量不会被回收
+
+举例来说：
+```js
+function test(){
+     var a=1;
+     return function(){
+       alert(a);
+     }
+   }
+   var foo = test();
+   foo(); //弹出a的值
+```
+这个例子中，变量 `a` 在 `test` 方法外部是无法访问的，但 `test` 方法里面，嵌套了一个匿名函数，通过`return`返回，`test`作用域中的变量`a`，
+可以在匿名函数中访问。并且当`test`方法执行后，变量`a`所占内存并不会释放，以达到嵌套的函数还可以访问的目的。
+
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/lamp.jpg">闭包的作用在于，可以通过闭包，设计私有变量及方法。
+
+举个私有变量的例子：
+```js
+var aaa = (function(){
+        var a = 1;
+        function bbb(){
+                a++;
+                alert(a);
+        }
+        function ccc(){
+                a++;
+                alert(a);
+        }
+        return {
+                b:bbb, //json结构
+                c:ccc
+        }
+    })();
+    alert(aaa.a) //undefined 
+    aaa.b();     //2
+    aaa.c();     //3
+```
+
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/lamp.jpg">总结：
+1. 闭包是指有权访问另一个函数作用域中的变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量。闭包的缺点就是常驻内存，会增大内存使用量，使用不当很容易造成内存泄露。
+
+2. 不必纠结到底怎样才算闭包，其实你写的每一个函数都算作闭包，即使是全局函数，你访问函数外部的全局变量时，就是闭包
+的体现。
+
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/lamp.jpg"><front style="color:red">经典面试题：</front>循环中使用闭包解决 `var` 定义函数的问题
+```js
+for ( var i=1; i<=5; i++) {
+	setTimeout( function timer() {
+		console.log( i );
+	}, i*1000 );
+}
+```
+首先因为`setTimeout`是个异步函数，所有会先把循环全部执行完毕，这时候`i`就是`6` 了，所以会输出一堆 `6`。
+
+解决办法两种，第一种使用闭包
+```js
+for (var i = 1; i <= 5; i++) {
+  (function(j) {
+    setTimeout(function timer() {
+      console.log(j);
+    }, j * 1000);
+  })(i);
+}
+```
+第二种就是使用 `setTimeout` 的第三个参数
+```js
+for ( let i=1; i<=5; i++) {
+	setTimeout( function timer() {
+		console.log( i );
+	}, i*1000 );
+}
+```
+因为对于 `let` 来说，他会创建一个块级作用域，相当于
+```js
+{ // 形成块级作用域
+  let i = 0
+  {
+    let ii = i
+    setTimeout( function timer() {
+        console.log( i );
+    }, i*1000 );
+  }
+  i++
+  {
+    let ii = i
+  }
+  i++
+  {
+    let ii = i
+  }
+  ...
+}
+```
