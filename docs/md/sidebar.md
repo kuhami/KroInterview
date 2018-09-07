@@ -1,5 +1,4 @@
 * 前端
-     * [JS](front) 
-     * [Git](git)
+     * [JS](front)
      * [WePy](doc)
      
