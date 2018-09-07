@@ -10,18 +10,6 @@
 
 查看[快速开始](front.md)了解详情。
 
-<p style="display:none">
-## 特性
-- 无需构建，写完文档直接发布
-- 容易使用并且轻量 (~19kB gzipped)
-- 智能的全文搜索
-- 提供多套主题
-- 丰富的 API
-- 支持 Emoji
-- 兼容 IE10+
-- 支持 SSR ([example](https://github.com/docsifyjs/docsify-ssr-demo))
-</p>
-
 ## 例子
 
 可以查看 [KroInterview](https://github.com/kuhami/KroInterview) 来了解使用 KroInterview 的文档项目。
@@ -30,6 +18,4 @@
 
 如果你觉得 KroInterview 对你有帮助，或者想对我微小的工作一点资瓷，欢迎给我[捐赠](https://kuhami.github.io/KroInterview/donate.html)。
 或者给动动小手给一颗[start](https://github.com/kuhami/KroInterview)，是对在下勇往直前的动力💪。
-<p style="display:none">
-## CommunityUsers and development team are in the [Gitter](https://gitter.im/docsifyjs/Lobby.
-</p>
+
