@@ -146,9 +146,13 @@ console.log(arr,newEveryarr);
 `for ··· in` 不仅可以用来 遍历对象，还可以用来遍历数组， 不过 `i` 对应与数组的`key`值
 
 ```js
-  var arr = ['1', 'two', 2, true, '二'];
+ var arr = ['1', 'two', 2, true, '二'];
  for(var i in arr){
     console.log(i,arr[i]);
  }
 //返回值： 0,1; 1,two; 2,2; 3,true; 4,二;
 ```
+
+## 闭包
+
+### 变量的作用域
