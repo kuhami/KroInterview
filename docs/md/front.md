@@ -67,7 +67,10 @@ typeof b // 'object' //显然用`typeof` 来区分它们是不行的
   并且检查该变量是否有数字长度（当为空`array`时长度也可能为0,object的长度为 `undefined`）。
       typeof a === 'object' && !isNaN(a.length)//true
       typeof b === 'object' && !isNaN(b.length)//false
-3.`Object.prototype.toString.call()`调用`toString( )`方法试着将该变量转化为代表其类型的`string`
+3.instanceof instanceof检测的是原型
+      [] instanceof Array; //true
+      {} instanceof Object;//true 
+4.`Object.prototype.toString.call()`调用`toString( )`方法试着将该变量转化为代表其类型的`string`
       Object.prototype.toString.call(a)  === '[object Array]'//true
       Object.prototype.toString.call(b)  === '[object Array]'//false
 ```
@@ -254,3 +257,203 @@ for ( let i=1; i<=5; i++) {
   ...
 }
 ```
+
+## new
+
+>众所周知：没有对象怎么办？那就new一个！现在我们就来剖析一下原生JS中new关键字内部的工作原理。
+
+要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4
+个步骤：
+1. 新生成了一个对象
+2. 新对象隐式原型链接到函数原型
+3. 调用函数绑定this
+4. 返回新对象
+
+核心代码：
+````js
+function _new(fun) {
+  return function() {
+    let obj = {
+      __proto__: fun.prototype
+    }
+    fun.apply(obj, arguments)
+    return obj
+  }
+}
+````
+测试用例：
+```js
+function person(name, age) {
+  this.name = name
+  this.age = age
+}
+let obj = _new(person)('LL', 100)
+console.log(obj) //{name: 'LL', age: 100}
+```
+## 深浅拷贝
+```js
+let a = {
+    age : 1
+}
+let b = a
+a.age = 2
+console.log(b.age) // 2
+```
+从上述例子中我们可以发现，如果给一个变量赋值一个对象，那么两者的值会是同一个引用，其中一方改变，另一方也会相应改变。
+
+通常在开发中我们不希望出现这样的问题，我们可以使用浅拷贝来解决这个问题。
+### 浅拷贝
+`Object.assign`方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用.
+```js
+let a = {
+    age: 1
+}
+let b = Object.assign({}, a)
+a.age = 2
+console.log(b.age) // 1
+```
+通常`浅拷贝`就能解决大部分问题了，但是当我们遇到如下情况就需要使用到深拷贝了
+```js
+let a = {
+    age: 1,
+    jobs: {
+        first: 'FE'
+    }
+}
+let b = Object.assign({}, a)
+a.jobs.first = 'native'
+console.log(b.jobs.first) // native
+```
+`浅拷贝` 只解决了第一层的问题，如果接下去的值中还有对象的话，那么就又回到刚开始的话题了，两者享有相同的引用。要解决这个问题，我们需要引入深拷贝。
+
+### 深拷贝
+
+* 递归实现
+
+````js
+function deepCopy(oldObj, newObj) {
+    var newObj = newObj || {}
+    for (var i in oldObj) {
+        if (oldObj[i] instanceof Object) {
+            if (oldObj[i].constructor === Array) {
+                newObj[i] = []
+            } else {
+                newObj[i] = {}
+            }
+            deepCopy(oldObj[i], newObj[i])
+        } else {
+            newObj[i] = oldObj[i]
+        }
+    }
+    return newObj
+}
+
+var obj1 = {
+    country: 'China',
+    city: ['Beijing,Shanghai,Nanjing'],
+    age: 16,
+    friends: {
+        name: 'dot',
+        sex: 'female',
+        age: null
+    }
+}
+
+var obj2 = {
+    name: 'dolby',
+    fav: 'food'
+}
+
+var obj3 = null
+
+console.log(deepCopy(obj1, obj2))
+//{ name: 'dolby',
+//   fav: 'food',
+//   country: 'China',
+//   city: [ 'Beijing,Shanghai,Nanjing' ],
+//   age: 16,
+//   friends: { name: 'dot', sex: 'female', age: null } }
+
+console.log(deepCopy(obj1, obj3))
+//{ country: 'China',
+//   city: [ 'Beijing,Shanghai,Nanjing' ],
+//   age: 16,
+//   friends: { name: 'dot', sex: 'female', age: null } }
+````
+* `JSON`对象的`parse()`和`stringify()`方法
+
+`JSON`对象是`ES5`中引入的新的类型（支持的浏览器为IE8+），`JSON`对象`parse`方法可以将JSON字符串反序列化成JS对象，`stringify`方法可以将JS对象序列化成JSON字符串，借助这两个方法，也可以实现对象的深复制。
+```js
+var source = {
+    name:"source",
+    child:{
+        name:"child"
+    }
+}
+var target = JSON.parse(JSON.stringify(source));
+//改变target的name属性
+target.name = "target";
+console.log(source.name);   //source
+console.log(target.name);   //target
+//改变target的child
+target.child.name = "target child";
+console.log(source.child.name);  //child
+console.log(target.child.name);  //target child
+```
+从代码的输出可以看出，复制后的target与source是完全隔离的，二者不会相互影响。
+
+这个方法使用较为简单，可以满足基本的深复制需求，而且能够处理JSON格式能表示的所有数据类型，但是对于正则表达式类型、函数类型等无法进行深复制(而且会直接丢失相应的值)，同时如果对象中存在循环引用的情况也无法正确处理
+
+* `jQuery`库中的`extend`复制方法
+
+在 jQuery 中可通过添加一个参数来实现递归extend。调用$.extend(true, {}, ...)就可以实现深复制。jQuery 无法正确深复制 JSON 对象以外的对象.
+```js
+var x = {
+    a: 1,
+    b: { f: { g: 1 } },
+    c: [ 1, 2, 3 ]
+};
+
+var y = $.extend({}, x),          //浅复制
+    z = $.extend(true, {}, x);    //深复制
+
+y.b.f === x.b.f       // true
+z.b.f === x.b.f       // false
+```
+## 截取Url获取参数
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/lamp.jpg"><front style="color:red">经典面试题：</front> 如何获取浏览器`URL`中查询字符串中的参数
+
+| 方法         | 描述                                       |
+| ---------- | ---------------------------------------- |
+| exec()  | 用正则表达式模式在字符串中查找，并返回该查找结果的第一个值（数组），如果匹配失败，返回null。  |
+| decodeURIComponent()      | 函数可对 encodeURIComponent() 函数编码的 URI 进行解码。             |
+
+
+````js
+/* 截取Url
+ * @param name	要截取的参数名
+ * 例如：http://localhost:3000/index.html?name=张三&&age=24&&sex=male
+ * 用法：getParam("name") // 张三
+ *      getParam("age")  // 24
+ */
+function getParam(name) {
+	var search = document.location.search;
+	var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+	var matcher = pattern.exec(search);
+	var items = null;
+	if (null != matcher) {
+		try {
+			items = decodeURIComponent(decodeURIComponent(matcher[1]));
+		} catch(e) {
+			try {
+				items = decodeURIComponent(matcher[1]);
+			} catch(e) {
+				items = matcher[1];
+			}
+		}
+	}
+	return items;
+};
+````
+## 存储
+### cookie，localStorage，sessionStorage，indexDB
