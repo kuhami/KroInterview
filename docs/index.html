@@ -79,10 +79,10 @@
             <div class="slide slide--features">
                 <div class="slide__inner">
                     <div class="section section--enter">
-                        <h2 class="title">为什么要选择WePY？</h2>
+                        <h2 class="title">为什么要选择KroInterview？</h2>
                         <div class="text">
                             <p>
-                                目前已有超过 5000 位开发者使用或了解本框架, 拥有众多的开发特性和优化方案.
+                                KroInterview是最基础，最容易理解的文档, 拥有众多的文字和代码段使更容易理解.
                             </p>
                         </div>
 
@@ -90,17 +90,16 @@
                             <div class="feature-item">
                                 <span class="features__icon features-icon--style"></span>
                                 <div class="features-text">
-                                    <h2 class="features__title">开发风格</h2>
-                                    <p class="features__description">接近于 Vue.js，支持组件 Props
-                                        传值，自定义事件、组件分布式复用Mixin、计算属性函数computed、模板内容分发slot等等</p>
+                                    <h2 class="features__title">初级到高级</h2>
+                                    <p class="features__description">涉及的知识点有基础，有深入，也有源码解析，是你学习的好帮手，助你面试披荆斩棘</p>
                                 </div>
                             </div>
 
                             <div class="feature-item">
                                 <span class="features__icon features-icon--component"></span>
                                 <div class="features-text">
-                                    <h2 class="features__title">组件化</h2>
-                                    <p class="features__description">组件化开发，完美解决组件隔离，组件嵌套，组件通信等问题</p>
+                                    <h2 class="features__title">知识点</h2>
+                                    <p class="features__description">不仅能让你的面试如虎添翼，更能在平时学习中查漏补缺</p>
                                 </div>
                             </div>
 
@@ -114,8 +113,8 @@
                             <div class="feature-item">
                                 <span class="features__icon features-icon--promise"></span>
                                 <div class="features-text">
-                                    <h2 class="feature__title">Promise</h2>
-                                    <p class="features__description">通过 polyfill 让小程序完美支持 Promise，解决回调烦恼</p>
+                                    <h2 class="feature__title">工具</h2>
+                                    <p class="features__description">良好的工具跟有利我们开发，解决团队开发的烦恼</p>
                                 </div>
                             </div>
                             <div class="feature-item">
@@ -129,7 +128,7 @@
                                 <span class="features__icon features-icon--optimize"></span>
                                 <div class="features-text">
                                     <h2 class="feature__title">优化</h2>
-                                    <p class="features__description">对小程序本身的优化，如请求列对处理，优雅的事件处理，生命周期的补充，性能的优化等等</p>
+                                    <p class="features__description">对前端本身的优化，如请求列对处理，优雅的事件处理，生命周期的补充，性能的优化等等</p>
                                 </div>
                             </div>
                             <div class="feature-item">
@@ -152,10 +151,9 @@
                             <div class="feature-item">
                                 <span class="features__icon features-icon--size"></span>
                                 <div class="features-text">
-                                    <h2 class="feature__title">框架大小</h2>
+                                    <h2 class="feature__title">方便快捷</h2>
                                     <p class="features__description">
-                                        压缩后 24.3KB 即可拥有所有框架功能，额外增加 8.9
-                                        KB后即可使用 Promise 和 Async Function
+                                        代码段一键复制，方便快捷，即刻得出结果
                                     </p>
                                 </div>
                             </div>
@@ -163,29 +161,29 @@
                     </div>
                 </div>
             </div>
-            <div class="slide slide--gist">
-                <div class="slide__inner">
-                    <div class="slide__header">
-                        <h2 class="slide__title">主要功能特性</h2>
-                        <p class="slide__description">
-                            WePY 框架在开发过程中参考了 Vue 等现有框架的一些语法风格和功能特性，对原生小程序的开发模式进行了再次封装，更贴近于 MVVM 架构模式, 并支持ES6/7的一些新特性。以下是使用 WePY 前后的代码对比与组件化示例。</p>
-                    </div>
-                    <div class="slide__body">
-                        <article class="gallery ">
-                            <figure class="gist window" :style="item.style" v-for="(item, index) in gists" :key="index" @mouseenter="codeEnter(item)" @mouseleave="codeLeave(item)">
-                                <figcaption><span class="chrome btn close"></span><span
-                                        class="chrome btn minimize"></span><span
-                                        class="chrome btn fullscreen"></span><span
-                                        class="chrome title">{{item.title}}</span></figcaption>
-                                <pre class="language-js" data-start="100"><code>
-                                    {{item.code}}
-                                </code></pre>
-                            </figure>
-                        </article>
+            <!--<div class="slide slide&#45;&#45;gist">-->
+                <!--<div class="slide__inner">-->
+                    <!--<div class="slide__header">-->
+                        <!--<h2 class="slide__title">主要功能特性</h2>-->
+                        <!--<p class="slide__description">-->
+                            <!--WePY 框架在开发过程中参考了 Vue 等现有框架的一些语法风格和功能特性，对原生小程序的开发模式进行了再次封装，更贴近于 MVVM 架构模式, 并支持ES6/7的一些新特性。以下是使用 WePY 前后的代码对比与组件化示例。</p>-->
+                    <!--</div>-->
+                    <!--<div class="slide__body">-->
+                        <!--<article class="gallery ">-->
+                            <!--<figure class="gist window" :style="item.style" v-for="(item, index) in gists" :key="index" @mouseenter="codeEnter(item)" @mouseleave="codeLeave(item)">-->
+                                <!--<figcaption><span class="chrome btn close"></span><span-->
+                                        <!--class="chrome btn minimize"></span><span-->
+                                        <!--class="chrome btn fullscreen"></span><span-->
+                                        <!--class="chrome title">{{item.title}}</span></figcaption>-->
+                                <!--<pre class="language-js" data-start="100"><code>-->
+                                    <!--{{item.code}}-->
+                                <!--</code></pre>-->
+                            <!--</figure>-->
+                        <!--</article>-->
 
-                    </div>
-                </div>
-            </div>
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
             <!--<div class="slide slide&#45;&#45;examples slide&#45;&#45;shown">-->
                 <!--<div class="slide__inner">-->
                     <!--<div class="slide__header">-->
