@@ -456,4 +456,27 @@ function getParam(name) {
 };
 ````
 ## 存储
-### cookie，localStorage，sessionStorage，indexDB
+> `cookie`、`localStorage`和`sessionStorage`的区别
+
+| 特性         | cookie     | sessionStorage |                  localStorage                |
+| ---------- | --------- | -------------------- | ----------- |
+|数据生命期 | 一般由服务器生成，可以设置过期时间，默认关闭浏览器失效|页面会话期间可用| 除非数据被清除，否则一直存在.|
+|存放数据大小 | 4K左右（因为每次http请求都会携带cookie）|一般5M或更大| 一般5M或更大|
+|与服务端通信|每次都会携带在 header 中，对于请求性能影响|不参与|不参与|
+
+从上表可以看到，`cookie` 已经不建议用于存储。如果没有大量数据存储需求的话，可以使用 `localStorage` 和 `sessionStorage` 。对于不怎么改变的数据尽量使用 `localStorage` 存储，否则可以用 `sessionStorage` 存储。
+
+无论是`cookie`还是HTML5的本地存储，都是相对不安全的，很容易受到各种各样的攻击，特别是HTML5的存储空间大，给了攻击者更大的发挥平台，所以都不能用来存储敏感信息。登录信息等重要信息还是存放到服务器里比较好
+
+对于 `cookie`，我们还需要注意安全性。
+
+| 属性         | 作用     |
+| ---------- | --------- |
+|value | 如果用于保存用户登录态，应该将该值加密，不能使用明文的用户标识|
+|http-only | 不能通过 JS 访问 Cookie，减少 XSS 攻击|
+|secure | 只能在协议为 HTTPS 的请求中携带|
+|same-site | 规定浏览器不能在跨域请求中携带 Cookie，减少 CSRF 攻击|
+	
+	
+
+	
