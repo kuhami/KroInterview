@@ -489,11 +489,14 @@ function getParam(name) {
 ```
 其实我们通常所说的跨域是狭义的，是由浏览器同源策略限制的一类请求场景。
 
-什么是同源策略？
+### 什么是同源策略？
 
-同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指"协议+域名+端口"三者相同，即便两个不同的域名指向同一个ip地址，也非同源。
+说到跨域就不得不提“同源策略”。
+ 
+`同源策略`是浏览器针对恶意的代码所进行的措施，为了防止世界被破坏，为了保护世界的和平，Web浏览器，采取了同源策略，只允许脚本读取和所属文档来源相同的窗口和文档的属性。
+那么，怎么判断文档来源是否相同呢？很简单，看三个部分： `协议`、`主机`、`端口号`。只要其中一个部分不同，则不同源。
 
-常见跨域场景
+### 常见跨域场景
 
 | URL         | 说明     | 是否允许通信| 
 | ---------- | --------- |---------| 
@@ -504,5 +507,47 @@ function getParam(name) {
 |http://www.domain.com/a.js <br/> http://x.domain.com/b.js <br/> http://domain.com/c.js | 主域相同，子域不同|不允许|
 |http://www.domain1.com/a.js <br/> http://www.domain2.com/b.js | 不同域名 |不允许|
 
+### 如何跨域
+
+1. JSONP
+
+`JSONP`由两部分组成： 回调函数和数据。
+原理：通过动态`<script>`元素来使用，可以通过`src`属性指定一个跨域`URL`。
+````js
+<script>
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+
+    // 传参并指定回调执行函数为onBack
+    script.src = 'http://www.domain2.com:8080/login?user=admin&callback=onBack';
+    document.head.appendChild(script);
+
+    // 回调执行函数
+    function onBack(res) {
+        alert(JSON.stringify(res));
+    }
+ </script>
+````
+服务端返回如下（返回时即执行全局函数）：
+```js
+onBack({"status": true, "user": "admin"})
+```
+2 .除此之外，还可以利用`jQuery`来实现。
+```js
+$.ajax({
+    url: 'http://www.domain2.com:8080/login',
+    type: 'get',
+    dataType: 'jsonp',  // 请求方式为jsonp
+    jsonpCallback: "onBack",    // 自定义回调函数名
+    data: {}
+});
+```
+优点:
+1. 兼容性强。
+2. 简单易用，能之间访问响应文本，支持浏览器与服务器之间双向通信。
+
+不足：
+1. 只能用GET方法，不能使用POST方法
+2. 无法判断请求是否失败，没有错误处理。
 
 	
