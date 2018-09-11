@@ -461,6 +461,6 @@ git reset <file-name>
 git push -f <remote-name> <branch-name>
 ```
 
-**[⬆ 返回顶部](#目录)**
+**[⬆ 返回顶部](#开卷必读)**
 
 
