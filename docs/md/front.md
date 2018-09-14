@@ -751,4 +751,50 @@ class B extends A {
   }
 }
 ```
-上面代码中，子类B的构造函数之中的super()，代表调用父类的构造函数。这是必须的，否则 JavaScript 引擎会报错。
+上面代码中，子类B的构造函数之中的`super()`，代表调用父类的构造函数。这是必须的，否则 `JavaScript` 引擎会报错。
+
+2、作为函数时，`super()`只能用在子类的构造函数之中，用在其他地方就会报错。
+```js
+class A {
+    
+}
+ 
+class B extends A {
+  m() {
+    super(); // 报错
+  }
+}
+```
+3、`super`作为对象时，在普通方法中，指向父类的原型对象，在静态方法中，指向父类。
+```js
+class A {
+  p() {
+    return 2;
+  }
+}
+ 
+class B extends A {
+  constructor() {
+    super();
+    console.log(super.p()); // 2
+  }
+}
+ 
+let b = new B();
+```
+4、由于`super`指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过`super`调用的。
+```js
+class A {
+      constructor() {
+        this.x = 1
+      }
+    }
+ 
+    class B extends A {
+      constructor() {
+        super()
+        console.log(super.x) // undefined
+      }
+    }
+    let p = new B()
+```
