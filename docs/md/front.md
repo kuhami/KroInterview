@@ -651,3 +651,54 @@ console.log(cat instanceof Cat); // false
 缺点：
 1. 实例是父类的实例，不是子类的实例
 1. 不支持多继承
+
+## ES6
+### ES6常用特性
+> `let`, `const`, `class`, `extends`, `super`, `arrow` `functions`, `template string`, `destructuring`, `default`, `rest arguments` 这些是ES6最常用的几个语法，基本上学会它们，就可以满足我们日常的使用！下面就用用最通俗易懂的语言和例子来讲解它们。
+    
+### Set 和 Map 数据结构
+与 Array 增、删、改、查对比
+
+````js
+let map = new Map(); 
+let set = new Set(); 
+let array = []; 
+// 增 
+ map.set('t', 1); 
+ set.add( { t : 1 } ); 
+ array.push( { t:1 } );
+ console.info( map, set, array ); 
+ // Map { 't' => 1 } Set { { t: 1 } } [ { t: 1 } ] 
+ 
+// 查 
+let map_exist = map.has( 't' ); 
+let set_exist = set.has( {t:1} ); 
+let array_exist = array.find(item => item.t) 
+console.info(map_exist, set_exist, array_exist); 
+//true false { t: 1 } 
+
+// 改
+map.set('t', 2); 
+set.forEach(item => item.t ? item.t = 2:'');
+array.forEach(item => item.t ? item.t = 2:''); 
+console.info(map, set, array); 
+// Map { 't' => 2 } Set { { t: 2 } } [ { t: 2 } ] 
+// 删 
+map.delete('t'); 
+set.forEach(item => item.t ? set.delete(item):''); 
+let index = array.findIndex(item => item.t); array.splice(index,1); 
+console.info(map, set, array); 
+// Map {} Set {} []
+````
+
+### Class 的继承
+
+>Class 可以通过extends关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。
+
+```js
+class Point {
+}
+
+class ColorPoint extends Point {
+}
+```
