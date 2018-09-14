@@ -702,3 +702,53 @@ class Point {
 class ColorPoint extends Point {
 }
 ```
+constructor方法和toString方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。
+
+子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。
+
+如果不调用super方法，子类就得不到this对象。这是因为：ES6 的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。
+
+上面代码定义了一个`ColorPoint`类，该类通过`extends`关键字，继承了`Point`类的所有属性和方法。但是由于没有部署任何代码，所以这两个类完全一样，等于复制了一个`Point`类。下面，我们在`ColorPoint`内部加上代码
+
+在子类的构造函数中，只有调用`super`之后，才可以使用this关键字，否则会报错
+
+```js
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+ 
+class ColorPoint extends Point {
+  constructor(x, y, color) {
+    this.color = color; // ReferenceError
+    super(x, y);
+    this.color = color; // 正确
+  }
+}
+```
+### Object.getPrototypeOf()
+Object.getPrototypeOf方法可以用来从子类上获取父类。
+
+```js
+Object.getPrototypeOf(ColorPoint) === Point
+// true
+```
+因此，可以使用这个方法判断，一个类是否继承了另一个类。
+
+### super 关键字
+
+`super`这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。
+
+1、super作为函数调用时，代表父类的构造函数
+```js
+class A {}
+ 
+class B extends A {
+  constructor() {
+    super();
+  }
+}
+```
+上面代码中，子类B的构造函数之中的super()，代表调用父类的构造函数。这是必须的，否则 JavaScript 引擎会报错。
