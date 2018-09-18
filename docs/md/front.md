@@ -655,7 +655,67 @@ console.log(cat instanceof Cat); // false
 ## ES6
 ### ES6常用特性
 > `let`, `const`, `class`, `extends`, `super`, `arrow` `functions`, `template string`, `destructuring`, `default`, `rest arguments` 这些是ES6最常用的几个语法，基本上学会它们，就可以满足我们日常的使用！下面就用用最通俗易懂的语言和例子来讲解它们。
+
+### 箭头函数
+>ES6很有意思的一部分就是函数的快捷写法。也就是`箭头函数`。
+
+箭头函数最直观的三个特点。
+1. 不需要 function 关键字来创建函数
+2. 省略 return 关键字
+3. 继承当前上下文的 this 关键字
+
+```js
+//例如：
+    [1,2,3].map(x => x + 1)
+//等同于：
+    [1,2,3].map((function(x){
+        return x + 1
+    }).bind(this))
+```
+
+<h5>说个小细节。</h5>
+
+当你的函数有且仅有一个参数的时候，是可以省略掉括号的。当你函数返回有且仅有一个表达式的时候可以省略{} 和 return；例如:
+
+```js
+var people = name => 'hello' + name
+    //参数name就没有括号
     
+var people = (name, age) => {
+       const fullName = 'hello' + name
+       return fullName
+    } 
+    //如果缺少()或者{}就会报错
+```
+
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/lamp.jpg">要不整一道笔试题？哈哈哈哈哈哈哈哈。我不管我先上代码了
+
+```js
+// 请使用ES6重构以下代码
+    
+    var calculate = function(x, y, z) {
+      if (typeof x != 'number') { x = 0 }
+      if (typeof y != 'number') { y = 6 }
+
+      var dwt = x % y
+      var result
+
+      if (dwt == z) { result = true }
+      if (dwt != z) { result = false }
+      
+      return result
+    }
+```
+
+ES6重构后：
+
+```js
+const calculate = (x, y, z) => {
+      x = typeof x !== 'number' ? 0 : x
+      y = typeof y !== 'number' ? 6 : y
+      return x % y === z
+    }
+```
 ### Set 和 Map 数据结构
 与 Array 增、删、改、查对比
 
@@ -798,3 +858,14 @@ class A {
     }
     let p = new B()
 ```
+
+### for of 值遍历
+我们都知道`for in`循环用于遍历数组，类数组或对象，`ES6`中新引入的`for of`循环功能相似，不同的是每次循环它提供的不是序号而是值。
+
+````js
+var someArray = [ "a", "b", "c" ];
+ 
+for (v of someArray) {
+    console.log(v);//输出 a,b,c
+}
+````
