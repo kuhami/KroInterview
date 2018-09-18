@@ -161,29 +161,34 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="slide slide&#45;&#45;gist">-->
-                <!--<div class="slide__inner">-->
-                    <!--<div class="slide__header">-->
-                        <!--<h2 class="slide__title">主要功能特性</h2>-->
-                        <!--<p class="slide__description">-->
-                            <!--WePY 框架在开发过程中参考了 Vue 等现有框架的一些语法风格和功能特性，对原生小程序的开发模式进行了再次封装，更贴近于 MVVM 架构模式, 并支持ES6/7的一些新特性。以下是使用 WePY 前后的代码对比与组件化示例。</p>-->
-                    <!--</div>-->
-                    <!--<div class="slide__body">-->
-                        <!--<article class="gallery ">-->
-                            <!--<figure class="gist window" :style="item.style" v-for="(item, index) in gists" :key="index" @mouseenter="codeEnter(item)" @mouseleave="codeLeave(item)">-->
-                                <!--<figcaption><span class="chrome btn close"></span><span-->
-                                        <!--class="chrome btn minimize"></span><span-->
-                                        <!--class="chrome btn fullscreen"></span><span-->
-                                        <!--class="chrome title">{{item.title}}</span></figcaption>-->
-                                <!--<pre class="language-js" data-start="100"><code>-->
-                                    <!--{{item.code}}-->
-                                <!--</code></pre>-->
-                            <!--</figure>-->
-                        <!--</article>-->
+            <div class="slide slide--gist">
+                <div class="slide__inner">
+                    <div class="slide__header">
+                        <h2 class="slide__title">React <br>
+                            用于构建用户界面的 JavaScript 库</h2>
+                        <p class="slide__description">
+                            声明式:React 可以非常轻松地创建用户交互界面。为你应用的每一个状态设计简洁的视图，在数据改变时 React 也可以高效地更新渲染界面。</p>
+                        <p class="slide__description">
+                            组件化:创建好拥有各自状态的组件，再由组件构成更加复杂的界面。</p>
+                        <p class="slide__description">
+                            一次学习，随处编写:无论你现在正在使用什么技术栈，你都可以随时引入 React 开发新特性。</p>
+                    </div>
+                    <div class="slide__body">
+                        <article class="gallery ">
+                            <figure class="gist window" :style="item.style" v-for="(item, index) in gists" :key="index" @mouseenter="codeEnter(item)" @mouseleave="codeLeave(item)">
+                                <figcaption><span class="chrome btn close"></span><span
+                                        class="chrome btn minimize"></span><span
+                                        class="chrome btn fullscreen"></span><span
+                                        class="chrome title">{{item.title}}</span></figcaption>
+                                <pre class="language-js" data-start="100"><code>
+                                    {{item.code}}
+                                </code></pre>
+                            </figure>
+                        </article>
 
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+                    </div>
+                </div>
+            </div>
             <!--<div class="slide slide&#45;&#45;examples slide&#45;&#45;shown">-->
                 <!--<div class="slide__inner">-->
                     <!--<div class="slide__header">-->
@@ -196,9 +201,9 @@
                             <!--...-->
                         <!--</p>-->
                         <!--<div class="examples__pr">-->
-                            <!--<a class="button button&#45;&#45;pr" href="https://github.com/Tencent/wepy/tree/master/docs/data" target="_blank"> -->
+                            <!--<a class="button button&#45;&#45;pr" href="https://github.com/Tencent/wepy/tree/master/docs/data" target="_blank">-->
                                 <!--<strong style="font-size: 20px;">+</strong> 案例</a>-->
-                        <!--</div> -->
+                        <!--</div>-->
                     <!--</div>-->
 
                     <!--&lt;!&ndash; 应用案例 &ndash;&gt;-->
@@ -274,76 +279,125 @@
       isQrShow: false,
       gists: [{
         id: 1,
-        title: '原生代码 index.js',
+        title: '组件',
         lang: 'language-js',
         style: '',
         code: `
-import wepy from 'wepy';
+class HelloMessage extends React.Component {
+  render() {
+    return (
+      <div>
+        Hello {this.props.name}
+      </div>
+    );
+  }
+}
 
-export default class Index extends wepy.page {
-    getData() {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({data: 123});
-        }, 3000);
-      });
-    };
-        
-    async onLoad () {
-      let data = await this.getData();
-      console.log(data.data);
-    };
-}`
+ReactDOM.render(
+  <HelloMessage name="Taylor" />,
+  mountNode
+);`
     }, {
         id: 2,
-        title: `index.wpy 中的 <script> 部分`,
+        title: `有状态组件`,
         lang: 'language-js',
         style: '',
         code: `
-import wepy from 'wepy';
-        
-// 通过继承自wepy.page的类创建页面逻辑
-export default class Index extends wepy.page {
-    //可用于页面模板绑定的数据
-    data = {
-      motto: 'Hello World',
-      userInfo: {}
-    };
-     
-    //事件处理函数(集中保存在methods对象中)
-    methods = {
-      bindViewTap () {
-        console.log('button clicked');
-      }
-    };
-        
-    //页面的生命周期函数
-    onLoad () {
-      console.log('onLoad');
-    };
-}`
+class Timer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { seconds: 0 };
+  }
+
+  tick() {
+    this.setState(prevState => ({
+      seconds: prevState.seconds + 1
+    }));
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    return (
+      <div>
+        Seconds: {this.state.seconds}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Timer />, mountNode);`
     }, {
         id: 3,
-        title: `支持ES6/7的一些新特性`,
+        title: `应用`,
         lang: 'language-js',
         style: '',
         code: `
-import wepy from 'wepy';
-        
-export default class Index extends wepy.page {
-    getData() {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({data: 123});
-        }, 3000);
-      });
+class TodoApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { items: [], text: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>TODO</h3>
+        <TodoList items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+          <input
+            onChange={this.handleChange}
+            value={this.state.text}
+          />
+          <button>
+            Add #{this.state.items.length + 1}
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  handleChange(e) {
+    this.setState({ text: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    if (!this.state.text.length) {
+      return;
+    }
+    const newItem = {
+      text: this.state.text,
+      id: Date.now()
     };
-        
-    async onLoad () {
-      let data = await this.getData();
-      console.log(data.data);
-    };
-}`
+    this.setState(prevState => ({
+      items: prevState.items.concat(newItem),
+      text: ''
+    }));
+  }
+}
+
+class TodoList extends React.Component {
+  render() {
+    return (
+      <ul>
+        {this.props.items.map(item => (
+          <li key={item.id}>{item.text}</li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+ReactDOM.render(<TodoApp />, mountNode);`
     }]
     },
     created: function () {
