@@ -69,6 +69,57 @@ const listItems = numbers.map((number) =>
 3. 把2所记录的差异应用到步骤1所构建的真正的DOM树上，视图就更新了。
 
 ## Immutable
+关于`Immutable`的定义，官方文档是这样说的：
+> Immutable data encourages pure functions (data-in, data-out) and lends itself to much simpler application development and enabling techniques from functional programming such as lazy evaluation.
+  
+  简而言之，`Immutable`数据就是一旦创建，就不能更改的数据。每当对`Immutable`对象进行修改的时候，就会返回一个新的`Immutable`对象，以此来保证数据的不可变。对于`Immutable`的好处及介绍，大家可以参考Immutable 详解及 React 中实践，这篇文章介绍的很清楚。
+  
+  因为`Immutable`的官方文档有点晦涩难懂，本文只是用来整理`Immutable`常用的API的使用，便于使用与查询，想了解更详细的内容，[请戳这里~](https://facebook.github.io/immutable-js/docs/#/)
+
+### Immutable 的几种数据类型
+1. `List`: 有序索引集，类似JavaScript中的Array。
+2. `Map`: 无序索引集，类似JavaScript中的Object。
+
+用的最多就是`List`和`Map`，所以在这里主要介绍这两种数据类型的API。
+
+### API的使用
+
+<h5>1.fromJS()</h5>
+作用：将一个`js`数据转换为`Immutable`类型的数据。
+
+用法：`fromJS(value, converter)`
+
+简介：value是要转变的数据，converter是要做的操作。第二个参数可不填，默认情况会将数组准换为List类型，将对象转换为Map类型，其余不做操作。
+
+代码实现：
+
+```js
+  const obj = Immutable.fromJS({a:'123',b:'234'},function (key, value, path) {
+      console.log(key, value, path)
+      return isIndexed(value) ? value.toList() : value.toOrderedMap())
+  })
+```
+<h5>2.toJS()</h5>
+作用：将一个`Immutable`数据转换为`JS`类型的数据。
+
+用法：`value.toJS()`
+
+<h5>3.is()</h5>
+作用：对两个对象进行比较。
+
+用法：`is(map1,map2)`
+
+简介：和js中对象的比较不同，在js中比较两个对象比较的是地址，但是在Immutable中比较的是这个对象`hashCode`和`valueOf`，只要两个对象的hashCode相等，值就是相同的，避免了深度遍历，提高了性能。
+
+代码实现：
+```js
+import { Map, is } from 'immutable'
+const map1 = Map({ a: 1, b: 1, c: 1 })
+const map2 = Map({ a: 1, b: 1, c: 1 })
+map1 === map2   //false
+Object.is(map1, map2) // false
+is(map1, map2) // true
+```
 
 
 
