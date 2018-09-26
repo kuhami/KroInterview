@@ -255,6 +255,26 @@ const newMap = aMap.update('key', value => value + value)
 
 用法参考setIn
 
+>`清除 clear()`
+
+作用：清楚所有数据
+
+用法：clear():this
+
+代码事例：
+
+```js
+Map({ key: 'value' }).clear()  //Map
+List([ 1, 2, 3, 4 ]).clear()   // List
+```
+<h5 style="font-size: 18px;">merge</h5>
+
+作用：浅合并，新数据与旧数据对比，旧数据中不存在的属性直接添加，就数据中已存在的属性用新数据中的覆盖
+
+
+
+
+
 
 
 
