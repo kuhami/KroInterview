@@ -84,7 +84,8 @@ const listItems = numbers.map((number) =>
 
 ### API的使用
 
-<h5>1.fromJS()</h5>
+<h5 style="font-size: 18px;">1.fromJS()</h5>
+
 作用：将一个`js`数据转换为`Immutable`类型的数据。
 
 用法：`fromJS(value, converter)`
@@ -99,12 +100,14 @@ const listItems = numbers.map((number) =>
       return isIndexed(value) ? value.toList() : value.toOrderedMap())
   })
 ```
-<h5>2.toJS()</h5>
+<h5 style="font-size: 18px;">2.toJS()</h5>
+
 作用：将一个`Immutable`数据转换为`JS`类型的数据。
 
 用法：`value.toJS()`
 
-<h5>3.is()</h5>
+<h5 style="font-size: 18px;">3.is()</h5>
+
 作用：对两个对象进行比较。
 
 用法：`is(map1,map2)`
@@ -120,6 +123,54 @@ map1 === map2   //false
 Object.is(map1, map2) // false
 is(map1, map2) // true
 ```
+<h5 style="font-size: 18px;">4.List 和 Map</h5>
+
+作用：用来创建一个新的`List`/`Map`对象
+>`List() 和 Map()`
+
+用法:
+```js
+//List
+
+List(): List<any>
+List<T>(): List<T>
+
+//Map
+
+Map(): Map<any>
+Map<T>(): Map<T>
+```
+
+> `List.of() 和 Map.of()`
+
+作用：创建一个新的包含`value`的`List/Map`对象
+
+用法：
+
+```js
+List.of<T>(...values: Array<T>): List<T>
+
+Map.of<T>(...values: Object<T>): Map<T>
+```
+<h5 style="font-size: 18px;">判断</h5>
+
+> `List.isList() 和 Map.isMap()`
+
+作用：判断一个数据结构是不是`List/Map`类型
+
+用法：
+
+```js
+List.isList(maybeList: any): boolean
+
+Map.isMap(maybeMap: any): boolean
+```
+<h5 style="font-size: 18px;">长度</h5>
+
+>`size`
+
+作用：获取`List/Map`的长度
+
 
 
 
