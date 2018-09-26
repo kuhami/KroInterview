@@ -171,6 +171,92 @@ Map.isMap(maybeMap: any): boolean
 
 作用：获取`List/Map`的长度
 
+<h5 style="font-size: 18px;">数据读取</h5>
+
+> `get() 、 getIn()`
+
+作用：获取数据结构中的数据
+
+>`has() 、 hasIn()`
+
+作用:判断是否存在某一个`key`
+
+用法：
+
+```js
+Immutable.fromJS([1,2,3,{a:4,b:5}]).has('0'); //true
+Immutable.fromJS([1,2,3,{a:4,b:5}]).has('0'); //true
+Immutable.fromJS([1,2,3,{a:4,b:5}]).hasIn([3,'b']) //true
+```
+
+>`includes()`
+
+作用：判断是否存在某一个`value`
+
+用法：
+
+```js
+Immutable.fromJS([1,2,3,{a:4,b:5}]).includes(2); //true
+Immutable.fromJS([1,2,3,{a:4,b:5}]).includes('2'); //false 不包含字符2
+Immutable.fromJS([1,2,3,{a:4,b:5}]).includes(5); //false 
+Immutable.fromJS([1,2,3,{a:4,b:5}]).includes({a:4,b:5}) //false
+Immutable.fromJS([1,2,3,{a:4,b:5}]).includes(Immutable.fromJS({a:4,b:5})) //true
+```
+
+<h5 style="font-size: 18px;">数据修改</h5>
+
+注：这里对于数据的修改，是对原数据进行操作后的值赋值给一个新的数据，并不会对原数据进行修改，因为Immutable是不可变的数据类型。
+
+>`设置set（）`
+
+作用：设置第一层`key`、`index`的值
+
+用法：
+
+```js
+set(index: number, value: T): List<T>
+set(key: K, value: V): this
+```
+>`setIn()`
+
+作用：设置深层结构中某属性的值
+
+用法：
+
+```js
+setIn(keyPath: Iterable<any>, value: any): this
+```
+用法与set()一样，只是第一个参数是一个数组，代表要设置的属性所在的位置
+
+>`删除 delete`
+
+用来删除深层数据，用法参考setIn
+
+>`更新 update()`
+
+```js
+update(index: number, updater: (value: T) => T): this //List
+update(key: K, updater: (value: V) => V): this  //Map
+```
+
+代码示例：
+
+```js
+////List
+const list = List([ 'a', 'b', 'c' ])
+const result = list.update(2, val => val.toUpperCase())
+
+///Map
+const aMap = Map({ key: 'value' })
+const newMap = aMap.update('key', value => value + value)
+```
+
+>`updateIn()`
+
+用法参考setIn
+
+
+
 
 
 
