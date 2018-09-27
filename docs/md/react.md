@@ -271,10 +271,52 @@ List([ 1, 2, 3, 4 ]).clear()   // List
 
 作用：浅合并，新数据与旧数据对比，旧数据中不存在的属性直接添加，就数据中已存在的属性用新数据中的覆盖
 
+<h5 style="font-size: 18px;">序列算法</h5>
 
+>`concat()`
 
+作用：对象的拼接，用法与js数组中的`concat()`相同，返回一个新的对象。
 
+用法：`const List = list1.concat(list2)`
 
+>`map()`
+
+作用：遍历整个对象，对`Map/List`元素进行操作，返回一个新的对象。
+
+用法：
+
+```js
+Map({a:1,b:2}).map(val=>10*val)
+//Map{a:10,b:20}
+```
+
+>`Map特有的mapKey()`
+
+作用：遍历整个对象，对Map元素的key进行操作，返回一个新的对象。
+
+用法：
+
+```js
+Map({a:1,b:2}).map((key,val)=>{
+  return [key+'l',val*10]
+})
+//Map{al:10,bl:20}
+```
+
+>`过滤 filter`
+
+作用：返回一个新的对象，包括所有满足过滤条件的元素
+
+用法：
+
+```js
+Map({a:1,b:2}).filter((key,val)=>{
+  return val == 2
+})
+//Map{b:2}
+```
+
+还有一个filterNot()方法，与此方法正好相反。
 
 
 
