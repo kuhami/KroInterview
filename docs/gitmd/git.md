@@ -378,7 +378,7 @@ git clean -X -f
 
 .gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。
 
-解决方法就是先把本地缓存删除（改变成未track状态），然后再提交:
+解决方法：先把本地缓存删除（改变成未track状态），然后再提交:
 
 ```sh
 git rm -r --cached .
