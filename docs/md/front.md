@@ -726,6 +726,13 @@ console.log(typeof sym); // symbol
 ```
 
 ### Set 和 Map 数据结构
+
+new Set(Arr) 去除数组的重复成员
+```js
+//Set 函数可以去重
+[...new Set([1,3,3,5,6,'1','1',"我",'我'])]
+// [1, 3, 5, 6, "1", "我"] 
+```
 与 Array 增、删、改、查对比
 
 ````js
