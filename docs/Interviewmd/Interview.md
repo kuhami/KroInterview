@@ -65,12 +65,42 @@ function run(input) {
 ```
 >面试官问你flex布局，垂直水平居中必须知道宽度吗？答：是，哈哈，你上当了。。。（其实答案是不需要知道高度的）
 
+## 实现Storage
+实现Storage，使得该对象为单例，并对localStorage进行封装设置值setItem(key,value)和getItem(key)
+
 ```js
+var instance = null;
+class Storage {
+  static getInstance() {
+    if (!instance) {
+      instance = new Storage();
+    }
+    return instance;
+  }
+  setItem = (key, value) => localStorage.setItem(key, value),
+  getItem = key => localStorage.getItem(key)
+}
 
 ```
-```js
+## 你的技术栈主要是react，那你说说你用react有什么坑点？
+1、JSX做表达式判断时候，需要强转为boolean类型，如：
 
+```js
+render() {
+  const b = 0;
+  return <div>
+    {
+      !!b && <div>这是一段文本</div>
+    }
+  </div>
+}
 ```
+如果不使用 !!b 进行强转数据类型，会在页面里面输出 0。
+
+2、尽量不要在 `componentWillReviceProps` 里使用 `setState`，如果一定要使用，那么需要判断结束条件，不然会出现无限重渲染，导致页面崩溃。
+
+3、给组件添加ref时候，尽量不要使用匿名函数，因为当组件更新的时候，匿名函数会被当做新的prop处理，让ref属性接受到新函数的时候，react内部会先清空ref，也就是会以null为回调参数先执行一次ref这个props，然后在以该组件的实例执行一次ref，所以用匿名函数做ref的时候，有的时候去ref赋值后的属性会取到null。[详情](https://reactjs.org/docs/refs-and-the-dom.html#caveats)
+
 ```js
 
 ```
