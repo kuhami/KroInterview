@@ -136,6 +136,46 @@ class Demo {
 
   首先说说为什么要使用`Virturl DOM`，因为操作真实`DOM`的耗费的性能代价太高，所以react内部使用js实现了一套dom结构，在每次操作在和真实dom之前，使用实现好的`diff算法`，对虚拟dom进行比较，递归找出有变化的dom节点，然后对其进行更新操作。为了实现虚拟DOM，我们需要把每一种节点类型抽象成对象，每一种节点类型有自己的属性，也就是prop，每次进行diff的时候，react会先比较该节点类型，假如节点类型不一样，那么react会直接删除该节点，然后直接创建新的节点插入到其中，假如节点类型一样，那么会比较prop是否有更新，假如有prop不一样，那么react会判定该节点有更新，那么重渲染该节点，然后在对其子节点进行比较，一层一层往下，直到没有子节点。
 
-```js
+##  请手写实现一个promise
+### Promise/A+ 规范
 
+Promise规范有很多，如Promise/A，Promise/B，Promise/D 以及 Promise/A 的升级版Promise/A+，因为ES6主要用的是Promise/A+规范，该规范内容也比较多，我们挑几个简单的说明下:
+
+1. Promise本身是一个状态机，每一个Promise实例只能有三个状态，pending、fulfilled、reject，状态之间的转化只能是pending->fulfilled、pending->reject，状态变化不可逆。
+2. Promise有一个then方法，该方法可以被调用多次，并且返回一个Promise对象（返回新的Promise还是老的Promise对象，规范没有提）。
+3. 支持链式调用。
+4. 内部保存有一个value值，用来保存上次执行的结果值，如果报错，则保存的是异常信息。
+### 实现
+由于Promise为状态机，我们需先定义状态
+
+```js
+var PENDING = 0; // 进行中
+var FULFILLED = 1; // 成功
+var REJECTED = 2; // 失败
+```
+
+基本代码
+
+```js
+function Promise(fn) {
+  var state = PENDING;  // 存储PENDING, FULFILLED或者REJECTED的状态
+  var value = null;  // 存储成功或失败的结果值
+  var handlers = []; // 存储成功或失败的处理程序，通过调用`.then`或者`.done`方法
+
+  // 成功状态变化
+  function fulfill(result) {
+      state = FULFILLED;
+      value = result;
+      handlers.forEach(handle); // 处理函数，下文会提到
+      handlers = null;
+   }
+
+  // 失败状态变化
+  function reject(error) {
+      state = REJECTED;
+      value = error;
+      handlers.forEach(handle); // 处理函数，下文会提到
+      handlers = null;
+  }
+}
 ```
