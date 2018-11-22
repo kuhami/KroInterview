@@ -101,6 +101,29 @@ render() {
 
 3、给组件添加ref时候，尽量不要使用匿名函数，因为当组件更新的时候，匿名函数会被当做新的prop处理，让ref属性接受到新函数的时候，react内部会先清空ref，也就是会以null为回调参数先执行一次ref这个props，然后在以该组件的实例执行一次ref，所以用匿名函数做ref的时候，有的时候去ref赋值后的属性会取到null。[详情](https://reactjs.org/docs/refs-and-the-dom.html#caveats)
 
+4、遍历子节点的时候，不要用 index 作为组件的 key 进行传入。
+
+## 我现在有一个button，要用react在上面绑定点击事件，要怎么做？
+
+```react
+class Demo {
+
+  onClick = (e) => {
+    alert('我点击了按钮')
+  }
+
+  render() {
+    return <button onClick={this.onClick}>
+      按钮
+    </button>
+  }
+}
+```
+
+## 你说说event loop
+
+  首先，js是单线程的，主要的任务是处理用户的交互，而用户的交互无非就是响应DOM的增删改，使用事件队列的形式，一次事件循环只处理一个事件响应，使得脚本执行相对连续，所以有了事件队列，用来储存待执行的事件，那么事件队列的事件从哪里被push进来的呢。那就是另外一个线程叫事件触发线程做的事情了，他的作用主要是在定时触发器线程、异步HTTP请求线程满足特定条件下的回调函数push到事件队列中，等待js引擎空闲的时候去执行，当然js引擎执行过程中有优先级之分，首先js引擎在一次事件循环中，会先执行js线程的主任务，然后会去查找是否有微任务microtask（promise），如果有那就优先执行微任务，如果没有，在去查找宏任务macrotask（setTimeout、setInterval）进行执行。
+
 ```js
 
 ```
