@@ -188,4 +188,4 @@ function Promise(fn) {
 4. Renderer进程开始解析css rule tree和dom tree，这两个过程是并行的，所以一般我会把link标签放在页面顶部。
 5. 解析绘制过程中，当浏览器遇到link标签或者script、img等标签，浏览器会去下载这些内容，遇到时候缓存的使用缓存，不适用缓存的重新下载资源。
 6. css rule tree和dom tree生成完了之后，开始合成render tree，这个时候浏览器会进行layout，开始计算每一个节点的位置，然后进行绘制。
-4. 绘制结束后，关闭TCP连接，过程有四次挥手。
+7. 绘制结束后，关闭TCP连接，过程有四次挥手。
