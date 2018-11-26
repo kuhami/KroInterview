@@ -189,3 +189,56 @@ function Promise(fn) {
 5. 解析绘制过程中，当浏览器遇到link标签或者script、img等标签，浏览器会去下载这些内容，遇到时候缓存的使用缓存，不适用缓存的重新下载资源。
 6. css rule tree和dom tree生成完了之后，开始合成render tree，这个时候浏览器会进行layout，开始计算每一个节点的位置，然后进行绘制。
 7. 绘制结束后，关闭TCP连接，过程有四次挥手。
+
+## 如何实现 sleep 的效果（es5或者es6）
+### while 循环的方式
+   ```js
+   function sleep(ms){
+      var start=Date.now(),expire=start+ms;
+      while(Date.now()<expire);
+      console.log('1111');
+      return;
+   }
+   ```
+执行sleep(1000)之后，休眠了1000ms之后输出了1111。上述循环的方式缺点很明显，容易造成死循环。
+
+### 通过 Promise 来实现
+```js
+function sleep(ms){
+  var temple=new Promise(
+  (resolve)=>{
+  console.log(111);setTimeout(resolve,ms)
+  });
+  return temple
+}
+sleep(500).then(function(){
+   //console.log(222)
+})
+//先输出了111，延迟500ms后输出222
+```
+### 通过 async 封装
+```js
+function sleep(ms){
+  return new Promise((resolve)=>setTimeout(resolve,ms));
+}
+async function test(){
+  var temple=await sleep(1000);
+  console.log(1111)
+  return temple
+}
+test();
+//延迟1000ms输出了1111
+```
+### 通过 generate 来实现
+```js
+function sleep(ms){
+  return new Promise((resolve)=>setTimeout(resolve,ms));
+}
+async function test(){
+  var temple=await sleep(1000);
+  console.log(1111)
+  return temple
+}
+test();
+//延迟1000ms输出了1111
+```
