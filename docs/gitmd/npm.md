@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/md/git.png">
+<img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/md/npm.jpeg">
 
 >  `nodejs` 社区乃至 Web 前端工程化领域发展到今天，作为 node 自带的包管理工具的 npm 已经成为每个前端开发者必备的工具。
 
