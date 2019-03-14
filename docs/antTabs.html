@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>KroInterview | 让前端面试更简单</title>
+    <meta name=keywords content="KroInterview, 前端面试,React, 组件化, ES6, ES7, Promise">
+    <meta name="description" content="让前端面试更简单">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon.ico in the root directory -->
+    <link rel="stylesheet" href="./css/donate.css">
+    <meta property="og:title" content="KroInterview 让前端面试更简单">
+    <link rel="icon" href="favicon.ico">
+    <link href="dist/index.4a63f431.css" rel="stylesheet">
+</head>
+
+<body class="shown">
+<div id="root"></div>
+<script type="text/javascript" src="dist/index.15340bc7.js"></script></body>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isQrShow: false,
+                donates: []
+            },
+            methods: {
+                wxEnter: function () {
+                    this.isQrShow = true
+                },
+                modalClick: function () {
+                    this.isQrShow = false
+                }
+            },
+            created: function () {
+                var self = this;
+                axios.get('./data/donate.json').then(function (res) {
+                    if (res && res.data) {
+                      self.donates = res.data.donates;
+                    }
+                });
+            }
+        })
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?14c98a4c2ac48bfa7a4c6e9bf797d125";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</body>
+
+</html>
