@@ -18,37 +18,9 @@
     <link href="dist/index.4a63f431.css" rel="stylesheet">
 </head>
 
-<body class="shown">
+<body>
 <div id="root"></div>
-<script type="text/javascript" src="dist/index.3cfaf690.js"></script></body>
-
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                isQrShow: false,
-                donates: []
-            },
-            methods: {
-                wxEnter: function () {
-                    this.isQrShow = true
-                },
-                modalClick: function () {
-                    this.isQrShow = false
-                }
-            },
-            created: function () {
-                var self = this;
-                axios.get('./data/donate.json').then(function (res) {
-                    if (res && res.data) {
-                      self.donates = res.data.donates;
-                    }
-                });
-            }
-        })
-    </script>
+<script type="text/javascript" src="dist/index.792b58df.js"></script></body>
     <script>
         var _hmt = _hmt || [];
         (function () {
