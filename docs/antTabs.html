@@ -1,36 +1,109 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <meta charset="UTF-8">
     <title>KroInterview | 让前端面试更简单</title>
-    <meta name=keywords content="KroInterview, 前端面试,React, 组件化, ES6, ES7, Promise">
-    <meta name="description" content="让前端面试更简单">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- favicon.ico in the root directory -->
-    <link rel="stylesheet" href="./css/donate.css">
-    <meta property="og:title" content="KroInterview 让前端面试更简单">
     <link rel="icon" href="favicon.ico">
-    <link href="dist/index.95e53dac.css" rel="stylesheet">
+    <meta name="description" content="让前端面试更简单">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+    <!--<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/buble.css">-->
+    <!--<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css">-->
+    <!--<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/pure.css">-->
 </head>
-
 <body>
-<div id="root"></div>
-<script type="text/javascript" src="dist/index.c3a3c52c.js"></script></body>
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?14c98a4c2ac48bfa7a4c6e9bf797d125";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
+<!--<div style="position: absolute;z-index: 999;padding: 5px 0 0 350px;">如发现文档中的错误，请<a href="https://github.com/wepyjs/wepy/edit/master/docs/md/doc.md" target="_blank">点击这里</a>修改本文档，修改完成后请 pull request，我们会尽快合并、更新。</div>-->
+<header>
+    <div class="container">
+        <nav class="a123">
+            <a href="./index.html">首页</a>
+            <!--<a href="#api">API文档</a>-->
+            <!--<a href="#changelog">CHANGELOG</a>-->
+            <a href="./document.html#/front">前端</a>
+            <a href="./Interview.html#/Interview">面试题集锦</a>
+            <a style="text-decoration: underline;color: #0BB20C;"  href="#/AntTabs">Ant-Tabs</a>
+            <a href="./git.html#/git">工具</a>
+            <a href="#">关于我们</a>
+        </nav>
+    </div>
+</header>
+<div id="app">Please wait...</div>
+<!--一键回到顶部-->
+<div id="topbtn" style="position: fixed;z-index: 999;bottom:20px;right:20px;cursor: pointer;">
+    <img src="img/topbtn.png" alt=""></div>
 </body>
+<script>
+    //    window.$docsify = {
+    //      el: '#app',
+    //      auto2top: true,
+    //      basePath: '../md/',
+    //      homepage: 'doc.md'
+    //    }
+    window.$docsify = {
+        el: '#app',
+        auto2top: true,
+        basePath: '../antTabmd/',
+        homepage: 'README.md',
+        repo: 'https://github.com/kuhami/KroInterview',
+        subMaxLevel:4,//左边栏显示层级
+        // 加载 _sidebar.md
+        loadSidebar: 'sidebar.md',
+        search: {
+            noData: {
+                '/': '没有结果!',
+                '/': 'No results!'
+            },
+            paths: '../md/',
+            placeholder: {
+                '/': '搜索',
+                '/': 'Search'
+            },
+        },
+    }
+
+    var topbtn = document.getElementById('topbtn');
+    var lastScroll = 0;
+    topbtn.style.display = 'none';
+    window.onscroll = function(){
+        var top = document.documentElement.scrollTop;//初始均为0
+        if(top > 0){
+            topbtn.style.display = 'block';
+        }
+        if(top == 0){ //若为起始状态，则不显示向上图标
+            topbtn.style.display = 'none';
+        }
+    };
+    topbtn.onclick = function () {
+        var scrollTop = 0;
+        var curPos = document.documentElement.scrollTop;//现在滚动条的位置
+        var step = Math.abs(scrollTop - curPos) / 200 ;
+        var tid = setInterval(function() { //不断调用，帧动成画
+            if (curPos > scrollTop + 14) {
+                curPos -= step;
+                step = step * 1.05; //速度逐步加快
+                document.documentElement.scrollTop = curPos
+            } else if (curPos <= scrollTop + 14){ //直接跳到起始位置
+                document.documentElement.scrollTop = scrollTop
+                clearInterval(tid); //关闭循环
+            }
+        }, 1);
+    }
+</script>
+
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+<!--需要一键复制代码到本地运行-->
+<script src="//unpkg.com/docsify-copy-code"></script>
+<!--在文档底部出现上一页和下一页按钮-->
+<script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?14c98a4c2ac48bfa7a4c6e9bf797d125";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
 </html>
