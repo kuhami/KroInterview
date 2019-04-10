@@ -1,3 +1,2 @@
-* 工具
-     * [AntTabs](AntTabs)
+* [Ant-Tabs](AntTabs)
      
