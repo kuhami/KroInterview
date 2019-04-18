@@ -13,7 +13,7 @@
 
 ## 更新日志
 ### 2019-04-18
-- 增加功能：AntTableFinder-多功能Table 深度封装 ant Tables
+- 增加功能：AntTableFinder-多功能Table 深度封装 ant Table 表格
 
 ### 2019-04-10
 - 增加功能：Tabs-支持多标签功能
