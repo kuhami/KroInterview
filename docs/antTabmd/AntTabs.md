@@ -12,7 +12,10 @@
 - [Ant Tabs 更新日志](https://kuhami.github.io/KroInterview/antTabs.html#/AntTabs)
 
 ## 更新日志
- ### 2019-04-10
+### 2019-04-18
+- 增加功能：AntTableFinder-多功能Table 深度封装 ant Tables
+
+### 2019-04-10
 - 增加功能：Tabs-支持多标签功能
 - 增加功能：支持-关闭当前标签页、关闭其他标签页、关闭全部标签页
 - 增加功能：拖拽组件
