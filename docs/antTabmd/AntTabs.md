@@ -3,8 +3,98 @@
 本文介绍`Ant Tabs`一些 新增的功能和原理及思路介绍及更新日志。
 
 ![](https://raw.githubusercontent.com/kuhami/react-ant/master/public/ant.jpeg)
-## 介绍-实现多页签的 原理及思路
-`Ant Tabs` 基于 `Ant Design Pro 2.0` 基础上修改的多标签Tabs
+## 实现多页签的原理及思路
+
+ `Ant Tabs` 基于 `Ant Design Pro 2.0` 基础上修改的多标签Tabs，修改此多标签也是工作上的需求，原来后台项目也是基于 `Antd Design` 来开发的，在 github上demo也不是很多，基本上也不符合自己的需求，于是就本着`自己动手,丰衣足食`的思想，自己在`Antd Design`的基础上修改了部分文件。
+   
+  但是，中间也走了很多弯路，踩了很多坑，修改了多个版本最终才成了现在的需求，不过我觉得还可以，仅供大家参考。
+       
+### 引入 ant Tabs
+主要修改文件 `react-ant/src/layouts/BasicLayout.js` 中引入`Tabs` 组件
+
+代码解析
+```js
+constructor(props) {
+    super(props);
+    const {routes} = props.route,routeKey = '/home/home'; // routeKey 为设置首页设置 试试 '/dashboard/analysis' 或其他key值
+    const tabLists = this.updateTree(routes);
+    let tabList=[];
+    tabLists.map((v) => {
+      if(v.key === routeKey){
+        if(tabList.length === 0){
+          v.closable = false
+          tabList.push(v);
+        }
+      }
+    });
+    this.state = ({
+        tabList:tabList,
+        tabListKey:[routeKey],
+        activeKey:routeKey,
+        routeKey
+    })
+
+    this.getPageTitle = memoizeOne(this.getPageTitle);
+    this.matchParamsPath = memoizeOne(this.matchParamsPath, isEqual);
+  }
+```
+- tabList: 用来存储打开的多标签
+- tabListKe:用来判断 tabList 是否重复保持tabList标签唯一性
+- activeKey:当前激活 tab 面板的 key
+- routeKey: 为设置首页设置 试试 '/dashboard/analysis' 或其他key值
+
+```js
+updateTree = data => {
+    const treeData = data;
+    const treeList = [];
+    // 递归获取树列表
+    const getTreeList = data => {
+      data.forEach(node => {
+        if(!node.level){
+          treeList.push({ tab: node.name, key: node.path,locale:node.locale,closable:true,content:node.component });
+        }
+        if (node.routes && node.routes.length > 0) { //!node.hideChildrenInMenu &&
+          getTreeList(node.routes);
+        }
+      });
+    };
+    getTreeList(treeData);
+    return treeList;
+  };
+```
+- updateTree函数：为递归 `routes` 多维数据变成一维数据
+```js
+ {hidenAntTabs ?
+              (<Authorized authority={routerConfig} noMatch={<Exception403 />}>
+              {children}
+                </Authorized>) :
+              (this.state.tabList && this.state.tabList.length ? (
+              <Tabs
+                // className={styles.tabs}
+                activeKey={activeKey}
+                onChange={this.onChange}
+                tabBarExtraContent={operations}
+                tabBarStyle={{background:'#fff'}}
+                tabPosition="top"
+                tabBarGutter={-1}
+                hideAdd
+                type="editable-card"
+                onEdit={this.onEdit}
+              >
+                {this.state.tabList.map(item => (
+                  <TabPane tab={item.tab} key={item.key} closable={item.closable}>
+                    <Authorized authority={routerConfig} noMatch={<Exception403 />}>
+                      {/*{item.content}*/}
+                      <Route key={item.key} path={item.path} component={item.content} exact={item.exact} />
+                    </Authorized>
+                  </TabPane>
+                ))}
+              </Tabs>
+            ) : null)}
+```
+- hidenAntTabs：添加这个字段为在抽屉屑中控制是否显示多标签
+
+
 
 ## 相关链接
 - [Ant Tabs 源码地址](https://github.com/kuhami/react-ant)
