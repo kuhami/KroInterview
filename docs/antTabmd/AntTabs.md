@@ -64,6 +64,19 @@ updateTree = data => {
 ```
 - updateTree函数：为递归 `routes` 多维数据变成一维数据
 ```js
+ <SiderMenu
+            logo={logo}
+            theme={navTheme}
+            onCollapse={this.handleMenuCollapse}
+            menuData={menuData}
+            isMobile={isMobile}
+            {...this.props}
+            onHandlePage ={this.onHandlePage}
+          />
+```
+
+- onHandlePage: 点击左侧及页面内触发的函数
+```js
  {hidenAntTabs ?
               (<Authorized authority={routerConfig} noMatch={<Exception403 />}>
               {children}
@@ -102,6 +115,10 @@ updateTree = data => {
 - [Ant Tabs 更新日志](https://kuhami.github.io/KroInterview/antTabs.html#/AntTabs)
 
 ## 更新日志
+### 2019-04-23
+- 增加功能：增加了左侧点击出发的函数，及ç`onHandlePage ={this.onHandlePage}`
+- 增加文档：主要解释了`Ant Tabs`的原理及功能
+
 ### 2019-04-18
 - 增加功能：AntTableFinder-多功能Table 深度封装 ant Table 表格
 
@@ -114,4 +131,4 @@ updateTree = data => {
 
 ## 反馈
 
-如果你觉得有用，对你有些帮助，欢迎给个[Star](https://github.com/kuhami/react-ant)😊
+如果你觉得有用，对你有些帮助，欢迎给个[Star](https://github.com/kuhami/react-ant)😊，如果你还为明白及文中有错误，请提交[Issues](https://github.com/kuhami/react-ant/issues)😊
