@@ -1,9 +1,9 @@
 # Ant Tabs（pro 2.0）
 
-本文介绍`Ant Tabs`一些 新增的功能和功能介绍及更新日志。
+本文介绍`Ant Tabs`一些 新增的功能和原理及思路介绍及更新日志。
 
 ![](https://raw.githubusercontent.com/kuhami/react-ant/master/public/ant.jpeg)
-## 介绍
+## 介绍-实现多页签的 原理及思路
 `Ant Tabs` 基于 `Ant Design Pro 2.0` 基础上修改的多标签Tabs
 
 ## 相关链接
