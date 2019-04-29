@@ -115,6 +115,9 @@ updateTree = data => {
 - [Ant Tabs 更新日志](https://kuhami.github.io/KroInterview/antTabs.html#/AntTabs)
 
 ## 更新日志
+### 2019-04-29
+-修复功能：解决了 `个人中心`和`个人设置`页面展示不全的问题
+
 ### 2019-04-23
 - 增加功能：增加了左侧点击出发的函数，及ç`onHandlePage ={this.onHandlePage}`
 - 增加文档：主要解释了`Ant Tabs`的原理及功能
