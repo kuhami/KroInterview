@@ -115,6 +115,9 @@ updateTree = data => {
 - [Ant Tabs 更新日志](https://kuhami.github.io/KroInterview/antTabs.html#/AntTabs)
 
 ## 更新日志
+### 2019-05-09
+- 增加页面：丰富了首页常用菜单，使打开页面更加快捷
+
 ### 2019-04-29
 - 修复功能：解决了 `个人中心`和`个人设置`页面展示不全的问题
 - 增加功能：拾色器组件
