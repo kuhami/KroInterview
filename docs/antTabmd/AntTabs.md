@@ -115,6 +115,9 @@ updateTree = data => {
 - [Ant Tabs 更新日志](https://kuhami.github.io/KroInterview/antTabs.html#/AntTabs)
 
 ## 更新日志
+### 2019-05-14
+- 更新组件：antd 组件由`^3.11.6`更新至`^3.16.1`,可以享用更丰富的组件和样式
+
 ### 2019-05-09
 - 增加页面：丰富了首页常用菜单，使打开页面更加快捷
 
