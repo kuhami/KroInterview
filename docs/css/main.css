@@ -375,7 +375,7 @@ a.logo {
 .logo__icon {
   height: 52px;
   width: 52px;
-  background-image: url(../img/wepylogo.png);
+  background-image: url(../img/krologo.png);
   background-size: 52px;
   background-position: left;
 }
@@ -753,7 +753,7 @@ li.social-link a {
   width: 52px;
   height: 52px;
   background-size: 52px;
-  background-image: url(../img/wepylogo.png);
+  background-image: url(../img/krologo.png);
 }
 .footer-header {
   color: white;
