@@ -5,6 +5,7 @@
 ## webpack demos 欢迎学习使用
 > `Webpack` - 从新手到大师 - 让一切变得简单
 
+  更多`Webpack demo` [详情](https://github.com/kuhami/webpack-demos)
 ## 前言：Webpack是什么
  
  Webpack是一个像Grunt和Gulp一样的前端构建系统
@@ -81,9 +82,7 @@
  
 ## 结语
 
-这里真的没有过多的总结。在你可能只想得到比 `console.log(pet)` 的信息更多一点，并且不太需要调试器的时候，上面这些工具都可能帮到你。
-
-也许最有用的是 `console.table`，但是其他方法也都有其适用的场景。在我们想要调试一些东西时，我热衷于使用 `console.assert`，但那也只在某种特殊情况下。
+这里`webpack-demo` 是对官方[Api](https://webpack.docschina.org/)文档举例说明，一步步从新手走向大师之路。
 
 
 
