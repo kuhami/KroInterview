@@ -269,6 +269,9 @@ git config --global alias.<handle> <command>
 比如：git status 改成 git st，这样可以简化命令
 
 git config --global alias.st status
+
+删除别名
+git config --global --unset alias.st
 ```
 
 ## 存储当前的修改，但不用提交commit
