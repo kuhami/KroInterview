@@ -115,6 +115,9 @@ updateTree = data => {
 - [Ant Tabs 更新日志](https://kuhami.github.io/KroInterview/antTabs.html#/AntTabs)
 
 ## 更新日志
+### 2019-07-01
+- 修复功能：add 新Tab页的时候做下容错处理，当想打开不存在页面的时候，返回404页面
+
 ### 2019-05-14
 - 更新组件：antd 组件由`^3.11.6`更新至`^3.17.0`,可以享用更丰富的组件和样式
 
