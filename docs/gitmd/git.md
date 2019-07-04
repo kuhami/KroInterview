@@ -216,7 +216,7 @@ git commit --amend
 ```sh
 git log
 ```
-## 查看commit 简化历史
+## 查看commit 彩色的简化日志
 ```sh
 git lg
 ```
