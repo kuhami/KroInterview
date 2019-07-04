@@ -216,6 +216,10 @@ git commit --amend
 ```sh
 git log
 ```
+## 查看commit 简化历史
+```sh
+git lg
+```
 
 ## 查看某段代码是谁写的
 blame的意思为‘责怪’，你懂的。
