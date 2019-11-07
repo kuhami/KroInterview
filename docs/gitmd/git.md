@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/kuhami/KroInterview/master/docs/img/md/git.png">
 
->  `Git` 是目前世界上最先进的分布式版本控制系统（没有之一），用于敏捷高效地处理任何或小或大的项目。
+>  `Git` 是目前世界上最先进的分布式版本控制系统（没有之一），用于敏捷高效地处理任何或小或大的项目。.....
 
 本文不会介绍 `Git` 的[安装配置](http://www.runoob.com/git/git-install-setup.html)，将直接介绍一些常用的`Git`命令和一些小技巧。
 
