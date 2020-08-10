@@ -51,12 +51,6 @@
 ## React 中 refs 的作用是什么？
 > Refs 是一个 获取 DOM节点或 React元素实例的工具。在 React 中 Refs 提供了一种方式，允许用户访问DOM 节点或者在render方法中创建的React元素。
 
-## React 中有三种构建组件的方式？
-
-1. 函数式定义的 `无状态组件`
-2. es5原生方式 `React.createClass` 定义的组件
-3. es6形式的 `extends React.Component` 定义的组件
-
 ## React中Keys的作用？
 > `Keys` 是React在操作列表中元素被修改,添加,或者删除的辅助标识.如果我们不加的话，react会在控制台抛出一段警告,那么这个key具体有什么作用。
 
@@ -75,6 +69,11 @@ const listItems = numbers.map((number) =>
 
 >key 的值要保持稳定且唯一，不能使用`random`来生成key的值。
 
+## React 中有三种构建组件的方式？
+
+1. 函数式定义的 `无状态组件`
+2. es5原生方式 `React.createClass` 定义的组件
+3. es6形式的 `extends React.Component` 定义的组件
 
 ## 为什么虚拟dom会提高性能？
 虚拟dom相当于在js和真实dom中间加了一个缓存，利用dom diff算法避免了没有必要的dom操作，从而提高性能。
