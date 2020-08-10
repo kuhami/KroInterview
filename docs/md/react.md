@@ -101,6 +101,27 @@ const listItems = numbers.map((number) =>
 2. create-react-app 也是默认支持的
 3. 在回调中你可以使用箭头函数，但问题是每次组件渲染时都会创建一个新的回调
 
+## 调用 Super(Props) 的目的是什么?
+> 在 super() 被调用之前，子类是不能使用 this 的，在 ES2015 中，子类必须在 constructor 中调用 super()。传递 props 给 super() 的原因则是便于(在子类中)能在 constructor 访问 this.props。
+
+## 简述 flux 思想?
+
+> Flux 的最大特点，就是数据的"单向流动"。
+
+1. 用户访问 View
+2. View 发出用户的 Action
+3. Dispatcher 收到 Action，要求 Store 进行相应的更新
+4. Store 更新后，发出一个"change"事件
+5. View 收到"change"事件后，更新页面
+
+## createElement和cloneElement有什么区别？
+
+> createElement 函数是 JSX 编译之后使用的创建 React Element 的函数，而 cloneElement 则是用于复制某个元素并传入新的 Props。
+
+## 如何告诉 React 它应该编译生产环境版本？
+
+通常情况下我们会使用 Webpack 的 DefinePlugin 方法来将 NODE_ENV 变量值设置为 production。编译版本中 React 会忽略 propType 验证以及其他的告警信息，同时还会降低代码库的大小，React 使用了 Uglify 插件来移除生产环境下不必要的注释等信息。
+
 ## Immutable
 关于`Immutable`的定义，官方文档是这样说的：
 > Immutable data encourages pure functions (data-in, data-out) and lends itself to much simpler application development and enabling techniques from functional programming such as lazy evaluation.
