@@ -75,6 +75,18 @@ const listItems = numbers.map((number) =>
 2. es5原生方式 `React.createClass` 定义的组件
 3. es6形式的 `extends React.Component` 定义的组件
 
+## 调用 setState 之后发生了什么？
+
+1. 在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程（Reconciliation）。
+2. 经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个UI界面。
+3. 在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。
+4. 在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。
+
+## 为什么建议传递给 setState 的参数是一个 callback 而不是一个对象?
+> 因为 this.props 和 this.state 的更新可能是异步的，不能依赖它们的值去计算下一个 state。
+
+## react diff 原理 ?(常考，大厂必考）
+> [react diff 原理](https://zhuanlan.zhihu.com/p/20346379)
 ## 为什么虚拟dom会提高性能？
 虚拟dom相当于在js和真实dom中间加了一个缓存，利用dom diff算法避免了没有必要的dom操作，从而提高性能。
 
@@ -82,6 +94,12 @@ const listItems = numbers.map((number) =>
 1. 用 Java 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中
 2. 当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异
 3. 把2所记录的差异应用到步骤1所构建的真正的DOM树上，视图就更新了。
+
+## 除了在构造函数中绑定 This，还有其它方式吗?
+
+1. 使用属性初始值设定项(property initializers)来正确绑定回调
+2. create-react-app 也是默认支持的
+3. 在回调中你可以使用箭头函数，但问题是每次组件渲染时都会创建一个新的回调
 
 ## Immutable
 关于`Immutable`的定义，官方文档是这样说的：
