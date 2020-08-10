@@ -23,6 +23,12 @@
 
 `componentDidMount`: 组件真正在被装载之后
 
+```
+在组件挂载完成后调用，且全局只调用一次，在该生命周期函数内：
+1.可以在这里使用refs，获取真实dom元素
+2.该钩子内也可以发起异步请求，并在异步请求中可以进行setState
+```
+
 二、运行中状态：
 
 `componentWillReceiveProps`: 组件将要接收到属性的时候调用
@@ -38,6 +44,18 @@
 三、销毁阶段：
 
 `componentWillUnmount`: 组件即将销毁
+
+## react性能优化是哪个周期函数？
+`shouldComponentUpdate` 这个方法用来判断是否需要调用render方法重新描绘dom。因为dom的描绘非常消耗性能，如果我们能在shouldComponentUpdate方法中能够写出更优化的dom diff算法，可以极大的提高性能。
+
+## React 中 refs 的作用是什么？
+> Refs 是一个 获取 DOM节点或 React元素实例的工具。在 React 中 Refs 提供了一种方式，允许用户访问DOM 节点或者在render方法中创建的React元素。
+
+## React 中有三种构建组件的方式？
+
+1. 函数式定义的 `无状态组件`
+2. es5原生方式 `React.createClass` 定义的组件
+3. es6形式的 `extends React.Component` 定义的组件
 
 ## React中Keys的作用？
 > `Keys` 是React在操作列表中元素被修改,添加,或者删除的辅助标识.如果我们不加的话，react会在控制台抛出一段警告,那么这个key具体有什么作用。
@@ -57,8 +75,6 @@ const listItems = numbers.map((number) =>
 
 >key 的值要保持稳定且唯一，不能使用`random`来生成key的值。
 
-## react性能优化是哪个周期函数？
-`shouldComponentUpdate` 这个方法用来判断是否需要调用render方法重新描绘dom。因为dom的描绘非常消耗性能，如果我们能在shouldComponentUpdate方法中能够写出更优化的dom diff算法，可以极大的提高性能。
 
 ## 为什么虚拟dom会提高性能？
 虚拟dom相当于在js和真实dom中间加了一个缓存，利用dom diff算法避免了没有必要的dom操作，从而提高性能。
