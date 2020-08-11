@@ -122,6 +122,30 @@ const listItems = numbers.map((number) =>
 
 通常情况下我们会使用 Webpack 的 DefinePlugin 方法来将 NODE_ENV 变量值设置为 production。编译版本中 React 会忽略 propType 验证以及其他的告警信息，同时还会降低代码库的大小，React 使用了 Uglify 插件来移除生产环境下不必要的注释等信息。
 
+## 展示组件(Presentational component)和容器组件(Container component)之间有何不同?
+`展示组件`
+1. 关注页面的展示效果（外观）
+2. 内部可以包含展示组件和容器组件，通常会包含一些自己的DOM结构和样式
+3. 通常允许通过this.props.children方式来包含其他组件。
+4. 对应用程序的其他部分没有依赖关系，例如Flux操作或store。
+5. 不用关心数据是怎么加载和变动的。
+6. 只能通过props的方式接收数据和进行回调(callback)操作。
+7. 很少拥有自己的状态，即使有也是用于展示UI状态的。
+8. 通常会写成函数式组件除非该组件需要自己的状态，生命周期或者做一些性能优化。
+
+`容器组件`
+1. 关注应用的是如何工作的
+2. 内部可以包含容器组件和展示组件
+3. 提供数据和行为给其他的展示组件或容器组件
+4. 往往是有状态的，因为它们倾向于作为数据源
+5. 通常使用高阶组件生成，例如React Redux的connect。
+
+## (组件的)状态(state)和属性(props)之间有何不同？
+
+`State` 是一种数据结构，用于组件挂载时所需数据的默认值。State 可能会随着时间的推移而发生突变，但多数时候是作为用户事件行为的结果。
+
+`Props`(properties 的简写)则是组件的配置。props 由父组件传递给子组件，并且就子组件而言，props 是不可变的(immutable)。组件不能改变自身的 props，但是可以把其子组件的 props 放在一起(统一管理)。Props 也不仅仅是数据–回调函数也可以通过 props 传递。
+
 ## Immutable
 关于`Immutable`的定义，官方文档是这样说的：
 > Immutable data encourages pure functions (data-in, data-out) and lends itself to much simpler application development and enabling techniques from functional programming such as lazy evaluation.
