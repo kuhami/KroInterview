@@ -157,6 +157,10 @@ const listItems = numbers.map((number) =>
 2. UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 3. 两者通过 React-Redux 提供 connect ⽅法联系起来
 
+## redux中间件
+
+## 了解 redux 么，说一下 redux 吧
+
 ## redux有什么缺点?
 1. 一个组件所需要的数据，必须甶父组件传过来，而不能像flux中直接从store取。
 
