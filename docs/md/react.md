@@ -146,6 +146,24 @@ const listItems = numbers.map((number) =>
 
 `Props`(properties 的简写)则是组件的配置。props 由父组件传递给子组件，并且就子组件而言，props 是不可变的(immutable)。组件不能改变自身的 props，但是可以把其子组件的 props 放在一起(统一管理)。Props 也不仅仅是数据–回调函数也可以通过 props 传递。
 
+## 何为受控组件(controlled component)？
+
+在 HTML 中，表单元素（`如<input>、 <textarea> 和 <select>`）通常自己维护 state，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 setState()来更新。
+
+我们可以把两者结合起来，使 React 的 state 成为“唯一数据源”。渲染表单的 React 组件还控制着用户输入过程中表单发生的操作。被 React 以这种方式控制取值的表单输入元素就叫做“受控组件”。
+
+## React react组件的划分业务组件技术组件？
+1. 根据组件的职责通常把组件分为UI组件和容器组件。
+2. UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
+3. 两者通过 React-Redux 提供 connect ⽅法联系起来
+
+## redux有什么缺点?
+1. 一个组件所需要的数据，必须甶父组件传过来，而不能像flux中直接从store取。
+
+2. 当一个组件相关数据更新吋，即使父组件不需要用到这个组件，
+父组件还是会重新render,
+可能会 有效率影响，或者需要写复杂的shouldComponentUpdate进行判断。
+
 ## Immutable
 关于`Immutable`的定义，官方文档是这样说的：
 > Immutable data encourages pure functions (data-in, data-out) and lends itself to much simpler application development and enabling techniques from functional programming such as lazy evaluation.
